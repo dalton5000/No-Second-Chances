@@ -1,0 +1,89 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/characters/char-sheet.png" type="Texture" id=1]
+
+[node name="Actor" type="Node2D"]
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Head" type="Node2D" parent="Body"]
+position = Vector2( -2, -26 )
+
+[node name="Sprite" type="Sprite" parent="Body/Head"]
+position = Vector2( 2, -25 )
+texture = ExtResource( 1 )
+vframes = 10
+hframes = 16
+frame = 15
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ArmLeft" type="Node2D" parent="Body"]
+position = Vector2( -12, -18 )
+rotation = 0.608956
+
+[node name="Sprite" type="Sprite" parent="Body/ArmLeft"]
+position = Vector2( 0, 23 )
+texture = ExtResource( 1 )
+vframes = 20
+hframes = 96
+frame = 783
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ArmRight" type="Node2D" parent="Body"]
+position = Vector2( 12, -18 )
+rotation = -0.60912
+
+[node name="Sprite" type="Sprite" parent="Body/ArmRight"]
+position = Vector2( 0, 23 )
+texture = ExtResource( 1 )
+vframes = 20
+hframes = 96
+frame = 783
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LegLeft" type="Node2D" parent="Body"]
+position = Vector2( -8, 22 )
+
+[node name="Sprite" type="Sprite" parent="Body/LegLeft"]
+position = Vector2( -2, 23 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 1 )
+vframes = 20
+hframes = 48
+frame = 489
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LegRight" type="Node2D" parent="Body"]
+position = Vector2( 7, 22 )
+
+[node name="Sprite" type="Sprite" parent="Body/LegRight"]
+position = Vector2( -2, 23 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 1 )
+vframes = 20
+hframes = 48
+frame = 489
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D2" type="Node2D" parent="Body"]
+
+[node name="Sprite" type="Sprite" parent="Body"]
+position = Vector2( 2, 0 )
+texture = ExtResource( 1 )
+vframes = 10
+hframes = 16
+frame = 47
+region_rect = Rect2( 0, 96, 1536, 192 )
+__meta__ = {
+"_edit_lock_": true
+}
