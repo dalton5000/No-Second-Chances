@@ -1,0 +1,193 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/Game.gd" type="Script" id=1]
+[ext_resource path="res://scenes/actor/Actor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/hud/CharacterCreator.gd" type="Script" id=3]
+[ext_resource path="res://assets/theme.tres" type="Theme" id=4]
+[ext_resource path="res://scenes/actor/Showmaster.tscn" type="PackedScene" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 0.352941, 0.352941, 0.341176 )
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="CreatorLayer" type="CanvasLayer" parent="."]
+
+[node name="CharacterCreator" type="Control" parent="CreatorLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+theme = ExtResource( 4 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreatorLayer/CharacterCreator"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -262.0
+margin_right = 262.0
+margin_bottom = 601.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
+margin_right = 524.0
+margin_bottom = 43.0
+text = "Who are you?"
+align = 1
+
+[node name="ActorPanel" type="Panel" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
+margin_top = 47.0
+margin_right = 524.0
+margin_bottom = 327.0
+rect_min_size = Vector2( 420, 280 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="Control" type="Control" parent="CreatorLayer/CharacterCreator/VBoxContainer/ActorPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = 104.0
+margin_right = 20.0
+margin_bottom = 144.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Actor" parent="CreatorLayer/CharacterCreator/VBoxContainer/ActorPanel/Control" instance=ExtResource( 2 )]
+scale = Vector2( 0.8, 0.8 )
+
+[node name="NameRow" type="HBoxContainer" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
+margin_top = 331.0
+margin_right = 524.0
+margin_bottom = 384.0
+
+[node name="Label" type="Label" parent="CreatorLayer/CharacterCreator/VBoxContainer/NameRow"]
+margin_top = 5.0
+margin_right = 256.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 256, 0 )
+text = "Player Name"
+
+[node name="LineEdit" type="LineEdit" parent="CreatorLayer/CharacterCreator/VBoxContainer/NameRow"]
+margin_left = 260.0
+margin_right = 516.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 256, 24 )
+text = "Anonymous"
+
+[node name="HeadRow" type="HBoxContainer" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
+margin_top = 388.0
+margin_right = 524.0
+margin_bottom = 437.0
+
+[node name="Label" type="Label" parent="CreatorLayer/CharacterCreator/VBoxContainer/HeadRow"]
+margin_top = 3.0
+margin_right = 256.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 256, 0 )
+text = "Head"
+
+[node name="ButtonLeft" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/HeadRow"]
+margin_left = 260.0
+margin_right = 324.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 64, 0 )
+text = "<"
+
+[node name="ValueLabel" type="Label" parent="CreatorLayer/CharacterCreator/VBoxContainer/HeadRow"]
+margin_left = 328.0
+margin_top = 3.0
+margin_right = 456.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 128, 0 )
+text = "0/1"
+align = 1
+
+[node name="ButtonRight" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/HeadRow"]
+margin_left = 460.0
+margin_right = 524.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 64, 0 )
+text = ">"
+
+[node name="BodyRow" type="HBoxContainer" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
+margin_top = 441.0
+margin_right = 524.0
+margin_bottom = 490.0
+
+[node name="Label" type="Label" parent="CreatorLayer/CharacterCreator/VBoxContainer/BodyRow"]
+margin_top = 3.0
+margin_right = 256.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 256, 0 )
+text = "Body"
+
+[node name="ButtonLeft" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/BodyRow"]
+margin_left = 260.0
+margin_right = 324.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 64, 0 )
+text = "<"
+
+[node name="ValueLabel" type="Label" parent="CreatorLayer/CharacterCreator/VBoxContainer/BodyRow"]
+margin_left = 328.0
+margin_top = 3.0
+margin_right = 456.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 128, 0 )
+text = "0/8"
+align = 1
+
+[node name="ButtonRight" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/BodyRow"]
+margin_left = 460.0
+margin_right = 524.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 64, 0 )
+text = ">"
+
+[node name="HSeparator" type="HSeparator" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 494.0
+margin_right = 524.0
+margin_bottom = 504.0
+custom_constants/separation = 10
+
+[node name="Button" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
+margin_top = 508.0
+margin_right = 524.0
+margin_bottom = 557.0
+text = "Start!"
+
+[node name="GameLayer" type="CanvasLayer" parent="."]
+
+[node name="Stage" type="Node2D" parent="GameLayer"]
+visible = false
+
+[node name="Actors" type="Node2D" parent="GameLayer/Stage"]
+
+[node name="Actor" parent="GameLayer/Stage/Actors" instance=ExtResource( 2 )]
+position = Vector2( 96, 456 )
+
+[node name="Actor2" parent="GameLayer/Stage/Actors" instance=ExtResource( 2 )]
+position = Vector2( 232, 456 )
+
+[node name="Actor3" parent="GameLayer/Stage/Actors" instance=ExtResource( 2 )]
+position = Vector2( 376, 456 )
+
+[node name="Actor4" parent="GameLayer/Stage/Actors" instance=ExtResource( 2 )]
+position = Vector2( 528, 456 )
+
+[node name="Showmaster" parent="GameLayer/Stage" instance=ExtResource( 5 )]
+position = Vector2( 867.917, 450.283 )

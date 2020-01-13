@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/actor/Actor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/actor/Showmaster.gd" type="Script" id=2]
+
+[node name="Showmaster" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Sprite" parent="Body/ArmLeft" index="0"]
+frame = 783
+
+[node name="Sprite" parent="Body/ArmRight" index="0"]
+frame = 783
+
+[node name="Sprite" parent="Body/LegLeft" index="0"]
+frame = 489
+
+[node name="Sprite" parent="Body/LegRight" index="0"]
+frame = 489
+
+[node name="Sprite" parent="Body" index="5"]
+frame = 47
