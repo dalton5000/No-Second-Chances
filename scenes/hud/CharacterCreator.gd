@@ -1,5 +1,7 @@
 extends Control
 
+signal finished
+
 const HEAD_MAX = 13
 const BODY_MAX = 15
 
@@ -41,7 +43,18 @@ func head_pressed(val):
 	else:
 		head_val += val
 
-	print(val)
-	print(head_val)
 	actor.head_frame = head_val
 	head_value_label.text = value_string % [str(head_val), str(15)]
+
+func create_character_string():
+	var string = $VBoxContainer/NameRow/LineEdit.text
+	string = string.split(",")[0] + ","
+	string = string.replace("Penis", "Funny")
+	string = string.replace("penis", "Funny")
+	string += str(head_val) + ","
+	string += str(body_val) + ","
+	return(string)
+
+
+func _on_Button_pressed():
+	emit_signal("finished")

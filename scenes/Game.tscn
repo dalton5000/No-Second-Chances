@@ -1,13 +1,138 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/actor/Actor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/hud/CharacterCreator.gd" type="Script" id=3]
 [ext_resource path="res://assets/theme.tres" type="Theme" id=4]
 [ext_resource path="res://scenes/actor/Showmaster.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/stage/stage.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 0.352941, 0.352941, 0.341176 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 1, 0.498039, 0.980392, 0.584314 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Fall"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("QuestionPanel:rect_rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 9.4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("QuestionPanel:rect_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3, 0.55 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 30, 382 ), Vector2( 30, 700 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("QuestionPanel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.0156863, 0.0156863, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "ShowQuestion"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("QuestionPanel/VBoxContainer/Label:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("QuestionPanel/VBoxContainer/HBoxContainer/Button:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("QuestionPanel/VBoxContainer/HBoxContainer/Button2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("QuestionPanel/VBoxContainer/HBoxContainer2/Button:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("QuestionPanel/VBoxContainer/HBoxContainer2/Button2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.9, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "SlideIn"
+tracks/0/type = "value"
+tracks/0/path = NodePath("QuestionPanel:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -800, 382 ), Vector2( 100, 382 ), Vector2( 30, 382 ) ]
+}
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -86,6 +211,7 @@ margin_right = 516.0
 margin_bottom = 53.0
 rect_min_size = Vector2( 256, 24 )
 text = "Anonymous"
+max_length = 10
 
 [node name="HeadRow" type="HBoxContainer" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
 margin_top = 388.0
@@ -173,21 +299,152 @@ text = "Start!"
 [node name="GameLayer" type="CanvasLayer" parent="."]
 
 [node name="Stage" type="Node2D" parent="GameLayer"]
-visible = false
+
+[node name="stage" type="Sprite" parent="GameLayer/Stage"]
+texture = ExtResource( 6 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Actors" type="Node2D" parent="GameLayer/Stage"]
+scale = Vector2( 0.7, 0.7 )
 
 [node name="Actor" parent="GameLayer/Stage/Actors" instance=ExtResource( 2 )]
-position = Vector2( 96, 456 )
+position = Vector2( 153.143, 478.857 )
 
 [node name="Actor2" parent="GameLayer/Stage/Actors" instance=ExtResource( 2 )]
-position = Vector2( 232, 456 )
+position = Vector2( 363.429, 478.857 )
 
 [node name="Actor3" parent="GameLayer/Stage/Actors" instance=ExtResource( 2 )]
-position = Vector2( 376, 456 )
+position = Vector2( 581.714, 478.857 )
 
 [node name="Actor4" parent="GameLayer/Stage/Actors" instance=ExtResource( 2 )]
-position = Vector2( 528, 456 )
+position = Vector2( 825.143, 478.857 )
 
 [node name="Showmaster" parent="GameLayer/Stage" instance=ExtResource( 5 )]
-position = Vector2( 867.917, 450.283 )
+position = Vector2( 907.917, 528.283 )
+
+[node name="HUD" type="Control" parent="GameLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuestionPanel" type="PanelContainer" parent="GameLayer/HUD"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -800.0
+margin_top = -218.0
+margin_right = -56.0001
+margin_bottom = -25.0
+theme = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameLayer/HUD/QuestionPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 737.0
+margin_bottom = 186.0
+
+[node name="Label" type="Label" parent="GameLayer/HUD/QuestionPanel/VBoxContainer"]
+margin_right = 730.0
+margin_bottom = 43.0
+text = "Which character was not playable in Super Mario Kart?"
+percent_visible = 0.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/HUD/QuestionPanel/VBoxContainer"]
+margin_top = 47.0
+margin_right = 730.0
+margin_bottom = 111.0
+alignment = 1
+
+[node name="Button" type="Button" parent="GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 107.0
+margin_right = 363.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 256, 64 )
+focus_mode = 0
+enabled_focus_mode = 0
+text = "1) Koopa Troopa"
+
+[node name="Button2" type="Button" parent="GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 367.0
+margin_right = 623.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 256, 64 )
+focus_mode = 0
+enabled_focus_mode = 0
+text = "2) Daisy"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameLayer/HUD/QuestionPanel/VBoxContainer"]
+margin_top = 115.0
+margin_right = 730.0
+margin_bottom = 179.0
+alignment = 1
+
+[node name="Button" type="Button" parent="GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer2"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 107.0
+margin_right = 363.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 256, 64 )
+focus_mode = 0
+enabled_focus_mode = 0
+text = "3) Peach"
+
+[node name="Button2" type="Button" parent="GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer2"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 367.0
+margin_right = 623.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 256, 64 )
+focus_mode = 0
+enabled_focus_mode = 0
+text = "4) Toad"
+
+[node name="SpeechPanel" type="PanelContainer" parent="GameLayer/HUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -360.0
+margin_bottom = 201.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GameLayer/HUD/SpeechPanel"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 350.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "pok"
+autowrap = true
+percent_visible = 0.0
+
+[node name="Tween" type="Tween" parent="GameLayer/HUD/SpeechPanel"]
+
+[node name="SpeechTimer" type="Timer" parent="GameLayer/HUD/SpeechPanel"]
+wait_time = 2.0
+one_shot = true
+
+[node name="HideTimer" type="Timer" parent="GameLayer/HUD/SpeechPanel"]
+wait_time = 2.0
+one_shot = true
+
+[node name="QuestionAnim" type="AnimationPlayer" parent="GameLayer/HUD"]
+anims/Fall = SubResource( 3 )
+anims/ShowQuestion = SubResource( 4 )
+anims/SlideIn = SubResource( 5 )
+[connection signal="finished" from="CreatorLayer/CharacterCreator" to="." method="_on_CharacterCreator_finished"]
+[connection signal="pressed" from="CreatorLayer/CharacterCreator/VBoxContainer/Button" to="CreatorLayer/CharacterCreator" method="_on_Button_pressed"]
+[connection signal="timeout" from="GameLayer/HUD/SpeechPanel/SpeechTimer" to="." method="_on_SpeechTimer_timeout"]
+[connection signal="timeout" from="GameLayer/HUD/SpeechPanel/HideTimer" to="." method="_on_HideTimer_timeout"]

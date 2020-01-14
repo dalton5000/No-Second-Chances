@@ -15,12 +15,27 @@ var arm_map = [0,2,4,8,4,2,8,0,4,2,8,0,10,10,10,10,10,10,10,10,0,0,0,0,0,0,0]
 var leg_map = [0,3,1,2,1,1,1,0,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0]
 var uni_bodies = [0,1,2,3,4,5,6,7]
 
+var player_name = "Anonymous" setget set_player_name
+onready var name_label = $Body/NameLabel
 var dark = false setget set_dark
 
 func _ready():
 	pass
 #	$Body/Head/Sprite.frame = head_frame
 #	$Body/Sprite.frame = body_frame + int(dark)
+
+func read_from_string(string):
+	var s = string.split(",")
+	set_player_name(s[0])
+	set_head_frame(int(s[1]))
+	set_body_frame(int(s[2]))
+
+func set_player_name(n):
+	name_label.text = n
+	player_name = n
+
+func show_name(vis):
+	name_label.visible = vis
 
 func set_head_frame(f):
 	head_frame = f

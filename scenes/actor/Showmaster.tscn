@@ -20,3 +20,6 @@ frame = 489
 
 [node name="Sprite" parent="Body" index="5"]
 frame = 47
+
+[node name="Sprite" parent="Body/Head" index="0"]
+frame = 15
