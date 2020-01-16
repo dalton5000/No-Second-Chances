@@ -11,7 +11,7 @@ var body = 0
 var category_score = {
 	"gaming":-1,
 	"godot":-1,
-	"suprise":-1
+	"surprise":-1
 }
 
 func _ready():

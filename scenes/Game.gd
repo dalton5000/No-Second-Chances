@@ -243,6 +243,7 @@ func answer_pressed(idx):
 func disable_categories():
 	for category in ["gaming","godot","surprise"]:
 		print("loaded category score: " + category)
+		print(user_data.category_score)
 		print(user_data.category_score[category])
 		if user_data.category_score[category] != -1:
 			print(user_data.category_score[category])
