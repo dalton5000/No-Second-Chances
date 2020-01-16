@@ -57,4 +57,5 @@ func _on_Button_pressed():
 	user_data.player_name = clean($VBoxContainer/NameRow/LineEdit.text)
 	user_data.head = head_val
 	user_data.body = body_val
+	user_data.save_config()
 	emit_signal("finished")

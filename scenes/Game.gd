@@ -142,7 +142,8 @@ func start_intro():
 	change_state(STATES.QUESTION)
 
 func start_validation():
-	say("Let's see everybodies answers...")
+	say("Let's see everybodies answers...",2.0)
+	yield(get_tree().create_timer(1.0), "timeout")
 	player.show_player_answer(given_answer)
 	for i in [1,2,3,4]:
 		actors[i].show_answer(current_question)
@@ -176,17 +177,17 @@ func start_validation():
 
 func start_gameover():
 	user_data.set_cat_score(active_category, current_question)
+	WebHandler.upload_answers(active_category, answers_given[active_category])
 	gameover_label.text = create_gameover_text()
 	say("Oh no! Your answer was wrong.\nYou know the deal...\nNo second Chances!\nBut thanks for participating!")
 	yield(self,"speech_complete")
+	check_candidates()
 	question_anim.play("Fall")
 	yield(get_tree().create_timer(1.0),"timeout")
 	player.anims.play("Smash")
-	check_candidates()
 	yield(get_tree().create_timer(2.0),"timeout")
 	say("Goodbye and until next time!")
 	candidates_wave()
-	WebHandler.upload_answers(active_category, answers_given[active_category])
 
 #	yield(get_tree().create_timer(5.0),"timeout")
 #	change_state(STATES.MENU)
@@ -208,7 +209,7 @@ func create_gameover_text():
 			if all_equal:
 				text = gameover_text_equal % [str(current_question), active_category]
 			else:
-				names_string = "%s, %s, %s and even %s" % [player_names]
+				names_string = "%s, %s, %s and even %s" % player_names
 				text = gameover_text_best % [str(current_question), active_category, names_string]
 		1:
 			names_string = "%s" % [better_players]

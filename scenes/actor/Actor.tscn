@@ -6,19 +6,18 @@
 [ext_resource path="res://assets/items/Blood.png" type="Texture" id=4]
 [ext_resource path="res://assets/items/10Tons.png" type="Texture" id=5]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 outline_color = Color( 1, 0.12549, 0.337255, 1 )
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=2]
 size = 96
 outline_size = 6
 outline_color = Color( 0.223529, 0.141176, 0.0901961, 1 )
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "Fall"
+[sub_resource type="Animation" id=3]
 length = 1.2
 step = 0.05
 tracks/0/type = "value"
@@ -135,8 +134,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Wave"
+[sub_resource type="Animation" id=5]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/ArmRight:rotation_degrees")
@@ -262,7 +260,7 @@ margin_top = 112.495
 margin_right = 128.202
 margin_bottom = 162.495
 rect_min_size = Vector2( 256, 0 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 0.0705882, 0.341176, 1 )
 text = "NAME"
 align = 1
@@ -278,7 +276,7 @@ margin_top = -296.0
 margin_right = 128.0
 margin_bottom = -150.0
 rect_min_size = Vector2( 256, 0 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "1"
 align = 1
@@ -287,9 +285,9 @@ __meta__ = {
 }
 
 [node name="BaseAnimations" type="AnimationPlayer" parent="."]
-anims/Fall = SubResource( 1 )
+anims/Fall = SubResource( 3 )
 anims/Smash = SubResource( 4 )
-anims/Wave = SubResource( 3 )
+anims/Wave = SubResource( 5 )
 
 [node name="Blood" type="Sprite" parent="."]
 position = Vector2( 0, 32 )

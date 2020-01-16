@@ -25,10 +25,9 @@ func _on_LobbyRequest_request_completed(result, response_code, headers, body):
 	print("lobbies loaded")
 	print (lobbies)
 
-func _physics_process(delta):
-	if Input.is_action_just_pressed("ui_down"):
-#		upload_answers("Rudy,2,9,","godot",[1,1,1,1])
-		$ConnectionTest.request("http://dalton5000.pythonanywhere.com/ping")
+#func _physics_process(delta):
+#	if Input.is_action_just_pressed("ui_down"):
+#		$ConnectionTest.request("http://dalton5000.pythonanywhere.com/ping")
 
 func upload_answers(category : String, answers : Array):
 	var dict = {}

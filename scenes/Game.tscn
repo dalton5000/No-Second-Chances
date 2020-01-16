@@ -189,14 +189,14 @@ font_data = ExtResource( 8 )
 [sub_resource type="Animation" id=8]
 resource_name = "FadeOut"
 
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=9]
 shader = ExtResource( 10 )
 shader_param/cutoff = 1.0
 shader_param/smooth_size = 0.028
 shader_param/color = null
 shader_param/mask = ExtResource( 11 )
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=10]
 resource_name = "FadeIn"
 length = 0.7
 tracks/0/type = "value"
@@ -319,7 +319,9 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 256, 0 )
 text = "Head"
 
-[node name="ButtonLeft" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/HeadRow"]
+[node name="ButtonLeft" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/HeadRow" groups=[
+"button",
+]]
 margin_left = 260.0
 margin_right = 324.0
 margin_bottom = 46.3206
@@ -335,7 +337,9 @@ rect_min_size = Vector2( 128, 0 )
 text = "0/1"
 align = 1
 
-[node name="ButtonRight" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/HeadRow"]
+[node name="ButtonRight" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/HeadRow" groups=[
+"button",
+]]
 margin_left = 460.0
 margin_right = 524.0
 margin_bottom = 46.3206
@@ -354,7 +358,9 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 256, 0 )
 text = "Body"
 
-[node name="ButtonLeft" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/BodyRow"]
+[node name="ButtonLeft" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/BodyRow" groups=[
+"button",
+]]
 margin_left = 260.0
 margin_right = 324.0
 margin_bottom = 46.3206
@@ -370,7 +376,9 @@ rect_min_size = Vector2( 128, 0 )
 text = "0/8"
 align = 1
 
-[node name="ButtonRight" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/BodyRow"]
+[node name="ButtonRight" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/BodyRow" groups=[
+"button",
+]]
 margin_left = 460.0
 margin_right = 524.0
 margin_bottom = 46.3206
@@ -384,7 +392,9 @@ margin_right = 524.0
 margin_bottom = 482.0
 custom_constants/separation = 10
 
-[node name="Button" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
+[node name="Button" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer" groups=[
+"button",
+]]
 margin_top = 486.0
 margin_right = 524.0
 margin_bottom = 532.321
@@ -463,7 +473,9 @@ margin_right = 730.0
 margin_bottom = 103.0
 alignment = 1
 
-[node name="Button" type="Button" parent="GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer" groups=[
+"button",
+]]
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 107.0
 margin_right = 363.0
@@ -474,7 +486,9 @@ toggle_mode = true
 enabled_focus_mode = 0
 text = "1) Koopa Troopa"
 
-[node name="Button2" type="Button" parent="GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer"]
+[node name="Button2" type="Button" parent="GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer" groups=[
+"button",
+]]
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 367.0
 margin_right = 623.0
@@ -491,7 +505,9 @@ margin_right = 730.0
 margin_bottom = 171.0
 alignment = 1
 
-[node name="Button" type="Button" parent="GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer2"]
+[node name="Button" type="Button" parent="GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer2" groups=[
+"button",
+]]
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 107.0
 margin_right = 363.0
@@ -502,7 +518,9 @@ toggle_mode = true
 enabled_focus_mode = 0
 text = "3) Peach"
 
-[node name="Button2" type="Button" parent="GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer2"]
+[node name="Button2" type="Button" parent="GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer2" groups=[
+"button",
+]]
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 367.0
 margin_right = 623.0
@@ -578,17 +596,19 @@ align = 1
 [node name="GameOverLabel" type="Label" parent="GameLayer/HUD/GameOverPanel/VBoxContainer"]
 margin_top = 39.0
 margin_right = 378.0
-margin_bottom = 189.0
+margin_bottom = 190.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "You reached question %s out of 10.
 Hey, at least you did better than %s!"
 autowrap = true
 
-[node name="MenuButton" type="Button" parent="GameLayer/HUD/GameOverPanel/VBoxContainer"]
-margin_top = 193.0
+[node name="MenuButton" type="Button" parent="GameLayer/HUD/GameOverPanel/VBoxContainer" groups=[
+"button",
+]]
+margin_top = 194.0
 margin_right = 378.0
-margin_bottom = 239.321
+margin_bottom = 240.321
 text = "Back to menu"
 
 [node name="TitleLayer" type="CanvasLayer" parent="."]
@@ -644,7 +664,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CreateCharacterButton" type="Button" parent="TitleLayer/Title/VBoxContainer"]
+[node name="CreateCharacterButton" type="Button" parent="TitleLayer/Title/VBoxContainer" groups=[
+"button",
+]]
 margin_right = 318.0
 margin_bottom = 46.3206
 text = "Create your Character"
@@ -660,20 +682,26 @@ margin_top = 89.0
 margin_right = 318.0
 margin_bottom = 235.0
 
-[node name="GamingButton" type="Button" parent="TitleLayer/Title/VBoxContainer/CategoryButtons"]
+[node name="GamingButton" type="Button" parent="TitleLayer/Title/VBoxContainer/CategoryButtons" groups=[
+"button",
+]]
 margin_right = 318.0
 margin_bottom = 46.3206
 disabled = true
 text = "Gaming"
 
-[node name="GodotButton" type="Button" parent="TitleLayer/Title/VBoxContainer/CategoryButtons"]
+[node name="GodotButton" type="Button" parent="TitleLayer/Title/VBoxContainer/CategoryButtons" groups=[
+"button",
+]]
 margin_top = 50.0
 margin_right = 318.0
 margin_bottom = 96.3206
 disabled = true
 text = "Godot"
 
-[node name="SurpriseButton" type="Button" parent="TitleLayer/Title/VBoxContainer/CategoryButtons"]
+[node name="SurpriseButton" type="Button" parent="TitleLayer/Title/VBoxContainer/CategoryButtons" groups=[
+"button",
+]]
 margin_top = 100.0
 margin_right = 318.0
 margin_bottom = 146.321
@@ -716,7 +744,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ConnectButton" type="Button" parent="TitleLayer/Title/ConnectionPanel"]
+[node name="ConnectButton" type="Button" parent="TitleLayer/Title/ConnectionPanel" groups=[
+"button",
+]]
 margin_left = 136.0
 margin_right = 250.66
 margin_bottom = 46.3206
@@ -725,7 +755,7 @@ text = "Try again"
 [node name="TransitionLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="TransitionLayer"]
-material = SubResource( 10 )
+material = SubResource( 9 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.43201
@@ -738,7 +768,7 @@ __meta__ = {
 }
 
 [node name="TransitionAnimation" type="AnimationPlayer" parent="TransitionLayer"]
-anims/FadeIn = SubResource( 12 )
+anims/FadeIn = SubResource( 10 )
 anims/FadeOut = SubResource( 11 )
 [connection signal="finished" from="CreatorLayer/CharacterCreator" to="." method="_on_CharacterCreator_finished"]
 [connection signal="pressed" from="CreatorLayer/CharacterCreator/VBoxContainer/Button" to="CreatorLayer/CharacterCreator" method="_on_Button_pressed"]

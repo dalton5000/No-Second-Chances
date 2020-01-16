@@ -35,6 +35,7 @@ config/icon="res://icon.png"
 WebHandler="*res://autoload/WebHandler.tscn"
 data="*res://autoload/data.gd"
 user_data="*res://autoload/user_data.gd"
+Sounds="*res://autoload/Sounds.tscn"
 
 [debug]
 
