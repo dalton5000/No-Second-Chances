@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Actor",
+"language": "GDScript",
+"path": "res://scenes/actor/Actor.gd"
+}, {
+"base": "Node2D",
+"class": "Game",
+"language": "GDScript",
+"path": "res://scenes/Game.gd"
+} ]
 _global_script_class_icons={
-
+"Actor": "",
+"Game": ""
 }
 
 [application]
@@ -19,10 +30,20 @@ config/name="No Second Chances"
 run/main_scene="res://scenes/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+WebHandler="*res://autoload/WebHandler.tscn"
+data="*res://autoload/data.gd"
+user_data="*res://autoload/user_data.gd"
+
+[debug]
+
+gdscript/warnings/enable=false
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_clear_color=Color( 0.898039, 0.8, 0.407843, 1 )
+environment/default_clear_color=Color( 1, 0.929412, 0.721569, 1 )
 environment/default_environment="res://default_env.tres"

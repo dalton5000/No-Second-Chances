@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/actor/Actor.tscn" type="PackedScene" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://assets/theme.tres" type="Theme" id=4]
 [ext_resource path="res://scenes/actor/Showmaster.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/stage/stage.png" type="Texture" id=6]
+[ext_resource path="res://assets/Fonts/JandaManateeSolid.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://scenes/Title.gd" type="Script" id=9]
+[ext_resource path="res://assets/shader/transition.shader" type="Shader" id=10]
+[ext_resource path="res://assets/shader/curtain.png" type="Texture" id=11]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 0.352941, 0.352941, 0.341176 )
@@ -19,6 +23,7 @@ bg_color = Color( 1, 0.498039, 0.980392, 0.584314 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Fall"
+length = 5.0
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("QuestionPanel:rect_rotation")
@@ -27,10 +32,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, 9.4 ]
+"values": [ 0.0, 12.0, 9.4 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("QuestionPanel:rect_position")
@@ -39,22 +44,22 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.3, 0.55 ),
+"times": PoolRealArray( 0.5, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 30, 382 ), Vector2( 30, 700 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("QuestionPanel:modulate")
-tracks/2/interp = 1
+tracks/2/path = NodePath("GameOverPanel:rect_position")
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 3.1, 3.45, 3.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.0156863, 0.0156863, 1 ) ]
+"values": [ Vector2( 626, -298 ), Vector2( 626, 23.8985 ), Vector2( 626, 6 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -77,10 +82,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.3, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("QuestionPanel/VBoxContainer/HBoxContainer/Button2:modulate")
@@ -89,10 +94,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.5, 0.7 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("QuestionPanel/VBoxContainer/HBoxContainer2/Button:modulate")
@@ -101,10 +106,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.7, 0.9 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("QuestionPanel/VBoxContainer/HBoxContainer2/Button2:modulate")
@@ -113,10 +118,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.9, 1.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.9, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -132,6 +137,95 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( -800, 382 ), Vector2( 100, 382 ), Vector2( 30, 382 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("QuestionPanel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("QuestionPanel:rect_rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "SlideOut"
+tracks/0/type = "value"
+tracks/0/path = NodePath("QuestionPanel:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 30, 382 ), Vector2( 100, 382 ), Vector2( -800, 382 ) ]
+}
+
+[sub_resource type="DynamicFont" id=7]
+size = 96
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "FadeOut"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = ExtResource( 10 )
+shader_param/cutoff = 1.0
+shader_param/smooth_size = 0.028
+shader_param/color = null
+shader_param/mask = ExtResource( 11 )
+
+[sub_resource type="Animation" id=12]
+resource_name = "FadeIn"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:material:shader_param/cutoff")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "FadeOut"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:material:shader_param/cutoff")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
 }
 
 [node name="Game" type="Node2D"]
@@ -166,14 +260,14 @@ __meta__ = {
 
 [node name="Title" type="Label" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
 margin_right = 524.0
-margin_bottom = 43.0
+margin_bottom = 35.0
 text = "Who are you?"
 align = 1
 
 [node name="ActorPanel" type="Panel" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
-margin_top = 47.0
+margin_top = 39.0
 margin_right = 524.0
-margin_bottom = 327.0
+margin_bottom = 319.0
 rect_min_size = Vector2( 420, 280 )
 custom_styles/panel = SubResource( 1 )
 
@@ -194,49 +288,49 @@ __meta__ = {
 scale = Vector2( 0.8, 0.8 )
 
 [node name="NameRow" type="HBoxContainer" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
-margin_top = 331.0
+margin_top = 323.0
 margin_right = 524.0
-margin_bottom = 384.0
+margin_bottom = 368.0
 
 [node name="Label" type="Label" parent="CreatorLayer/CharacterCreator/VBoxContainer/NameRow"]
 margin_top = 5.0
 margin_right = 256.0
-margin_bottom = 48.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 256, 0 )
 text = "Player Name"
 
 [node name="LineEdit" type="LineEdit" parent="CreatorLayer/CharacterCreator/VBoxContainer/NameRow"]
 margin_left = 260.0
 margin_right = 516.0
-margin_bottom = 53.0
+margin_bottom = 45.0
 rect_min_size = Vector2( 256, 24 )
 text = "Anonymous"
 max_length = 10
 
 [node name="HeadRow" type="HBoxContainer" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
-margin_top = 388.0
+margin_top = 372.0
 margin_right = 524.0
-margin_bottom = 437.0
+margin_bottom = 418.0
 
 [node name="Label" type="Label" parent="CreatorLayer/CharacterCreator/VBoxContainer/HeadRow"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 256.0
-margin_bottom = 46.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 256, 0 )
 text = "Head"
 
 [node name="ButtonLeft" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/HeadRow"]
 margin_left = 260.0
 margin_right = 324.0
-margin_bottom = 49.0
+margin_bottom = 46.3206
 rect_min_size = Vector2( 64, 0 )
 text = "<"
 
 [node name="ValueLabel" type="Label" parent="CreatorLayer/CharacterCreator/VBoxContainer/HeadRow"]
 margin_left = 328.0
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 456.0
-margin_bottom = 46.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 128, 0 )
 text = "0/1"
 align = 1
@@ -244,34 +338,34 @@ align = 1
 [node name="ButtonRight" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/HeadRow"]
 margin_left = 460.0
 margin_right = 524.0
-margin_bottom = 49.0
+margin_bottom = 46.3206
 rect_min_size = Vector2( 64, 0 )
 text = ">"
 
 [node name="BodyRow" type="HBoxContainer" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
-margin_top = 441.0
+margin_top = 422.0
 margin_right = 524.0
-margin_bottom = 490.0
+margin_bottom = 468.0
 
 [node name="Label" type="Label" parent="CreatorLayer/CharacterCreator/VBoxContainer/BodyRow"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 256.0
-margin_bottom = 46.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 256, 0 )
 text = "Body"
 
 [node name="ButtonLeft" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/BodyRow"]
 margin_left = 260.0
 margin_right = 324.0
-margin_bottom = 49.0
+margin_bottom = 46.3206
 rect_min_size = Vector2( 64, 0 )
 text = "<"
 
 [node name="ValueLabel" type="Label" parent="CreatorLayer/CharacterCreator/VBoxContainer/BodyRow"]
 margin_left = 328.0
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 456.0
-margin_bottom = 46.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 128, 0 )
 text = "0/8"
 align = 1
@@ -279,21 +373,21 @@ align = 1
 [node name="ButtonRight" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer/BodyRow"]
 margin_left = 460.0
 margin_right = 524.0
-margin_bottom = 49.0
+margin_bottom = 46.3206
 rect_min_size = Vector2( 64, 0 )
 text = ">"
 
 [node name="HSeparator" type="HSeparator" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 494.0
+margin_top = 472.0
 margin_right = 524.0
-margin_bottom = 504.0
+margin_bottom = 482.0
 custom_constants/separation = 10
 
 [node name="Button" type="Button" parent="CreatorLayer/CharacterCreator/VBoxContainer"]
-margin_top = 508.0
+margin_top = 486.0
 margin_right = 524.0
-margin_bottom = 557.0
+margin_bottom = 532.321
 text = "Start!"
 
 [node name="GameLayer" type="CanvasLayer" parent="."]
@@ -301,6 +395,7 @@ text = "Start!"
 [node name="Stage" type="Node2D" parent="GameLayer"]
 
 [node name="stage" type="Sprite" parent="GameLayer/Stage"]
+z_index = -100
 texture = ExtResource( 6 )
 centered = false
 __meta__ = {
@@ -311,19 +406,23 @@ __meta__ = {
 scale = Vector2( 0.7, 0.7 )
 
 [node name="Actor" parent="GameLayer/Stage/Actors" instance=ExtResource( 2 )]
-position = Vector2( 153.143, 478.857 )
+position = Vector2( 473.143, 444.571 )
 
 [node name="Actor2" parent="GameLayer/Stage/Actors" instance=ExtResource( 2 )]
-position = Vector2( 363.429, 478.857 )
+position = Vector2( 100.572, 478.857 )
 
 [node name="Actor3" parent="GameLayer/Stage/Actors" instance=ExtResource( 2 )]
-position = Vector2( 581.714, 478.857 )
+position = Vector2( 284.572, 478.857 )
 
 [node name="Actor4" parent="GameLayer/Stage/Actors" instance=ExtResource( 2 )]
-position = Vector2( 825.143, 478.857 )
+position = Vector2( 630.857, 478.857 )
+
+[node name="Actor5" parent="GameLayer/Stage/Actors" instance=ExtResource( 2 )]
+position = Vector2( 790.857, 478.857 )
 
 [node name="Showmaster" parent="GameLayer/Stage" instance=ExtResource( 5 )]
 position = Vector2( 907.917, 528.283 )
+alive = true
 
 [node name="HUD" type="Control" parent="GameLayer"]
 anchor_right = 1.0
@@ -336,10 +435,11 @@ __meta__ = {
 [node name="QuestionPanel" type="PanelContainer" parent="GameLayer/HUD"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = -800.0
-margin_top = -218.0
-margin_right = -56.0001
-margin_bottom = -25.0
+margin_left = 30.0
+margin_top = 100.0
+margin_right = 774.0
+margin_bottom = 293.0
+rect_rotation = 9.4
 theme = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -353,14 +453,14 @@ margin_bottom = 186.0
 
 [node name="Label" type="Label" parent="GameLayer/HUD/QuestionPanel/VBoxContainer"]
 margin_right = 730.0
-margin_bottom = 43.0
+margin_bottom = 35.0
 text = "Which character was not playable in Super Mario Kart?"
 percent_visible = 0.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/HUD/QuestionPanel/VBoxContainer"]
-margin_top = 47.0
+margin_top = 39.0
 margin_right = 730.0
-margin_bottom = 111.0
+margin_bottom = 103.0
 alignment = 1
 
 [node name="Button" type="Button" parent="GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer"]
@@ -370,6 +470,7 @@ margin_right = 363.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 256, 64 )
 focus_mode = 0
+toggle_mode = true
 enabled_focus_mode = 0
 text = "1) Koopa Troopa"
 
@@ -380,13 +481,14 @@ margin_right = 623.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 256, 64 )
 focus_mode = 0
+toggle_mode = true
 enabled_focus_mode = 0
 text = "2) Daisy"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="GameLayer/HUD/QuestionPanel/VBoxContainer"]
-margin_top = 115.0
+margin_top = 107.0
 margin_right = 730.0
-margin_bottom = 179.0
+margin_bottom = 171.0
 alignment = 1
 
 [node name="Button" type="Button" parent="GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer2"]
@@ -396,6 +498,7 @@ margin_right = 363.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 256, 64 )
 focus_mode = 0
+toggle_mode = true
 enabled_focus_mode = 0
 text = "3) Peach"
 
@@ -406,6 +509,7 @@ margin_right = 623.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 256, 64 )
 focus_mode = 0
+toggle_mode = true
 enabled_focus_mode = 0
 text = "4) Toad"
 
@@ -444,7 +548,213 @@ one_shot = true
 anims/Fall = SubResource( 3 )
 anims/ShowQuestion = SubResource( 4 )
 anims/SlideIn = SubResource( 5 )
+anims/SlideOut = SubResource( 6 )
+
+[node name="GameOverPanel" type="PanelContainer" parent="GameLayer/HUD"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 114.0
+margin_top = -565.935
+margin_right = 506.0
+margin_bottom = -311.935
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameLayer/HUD/GameOverPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 385.0
+margin_bottom = 247.0
+
+[node name="Logo" type="Label" parent="GameLayer/HUD/GameOverPanel/VBoxContainer"]
+margin_right = 378.0
+margin_bottom = 35.0
+text = "No Second Chances!"
+align = 1
+
+[node name="GameOverLabel" type="Label" parent="GameLayer/HUD/GameOverPanel/VBoxContainer"]
+margin_top = 39.0
+margin_right = 378.0
+margin_bottom = 189.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "You reached question %s out of 10.
+Hey, at least you did better than %s!"
+autowrap = true
+
+[node name="MenuButton" type="Button" parent="GameLayer/HUD/GameOverPanel/VBoxContainer"]
+margin_top = 193.0
+margin_right = 378.0
+margin_bottom = 239.321
+text = "Back to menu"
+
+[node name="TitleLayer" type="CanvasLayer" parent="."]
+
+[node name="Title" type="Control" parent="TitleLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="stage" type="TextureRect" parent="TitleLayer/Title"]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="TitleLayer/Title"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -426.0
+margin_top = 35.0
+margin_right = 426.0
+margin_bottom = 181.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "No Second Chances!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Actor" parent="TitleLayer/Title" instance=ExtResource( 2 )]
+position = Vector2( 174.902, 522.056 )
+starts_high = true
+
+[node name="ArmLeft" parent="TitleLayer/Title/Actor/Body" index="0"]
+rotation = 2.57659
+
+[node name="ArmRight" parent="TitleLayer/Title/Actor/Body" index="1"]
+rotation = -2.54105
+
+[node name="Showmaster" parent="TitleLayer/Title" instance=ExtResource( 5 )]
+position = Vector2( 879.059, 535.293 )
+alive = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleLayer/Title"]
+margin_left = 367.093
+margin_top = 266.419
+margin_right = 685.093
+margin_bottom = 415.419
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreateCharacterButton" type="Button" parent="TitleLayer/Title/VBoxContainer"]
+margin_right = 318.0
+margin_bottom = 46.3206
+text = "Create your Character"
+
+[node name="Label" type="Label" parent="TitleLayer/Title/VBoxContainer"]
+margin_top = 50.0
+margin_right = 318.0
+margin_bottom = 85.0
+text = "Choose Category"
+
+[node name="CategoryButtons" type="VBoxContainer" parent="TitleLayer/Title/VBoxContainer"]
+margin_top = 89.0
+margin_right = 318.0
+margin_bottom = 235.0
+
+[node name="GamingButton" type="Button" parent="TitleLayer/Title/VBoxContainer/CategoryButtons"]
+margin_right = 318.0
+margin_bottom = 46.3206
+disabled = true
+text = "Gaming"
+
+[node name="GodotButton" type="Button" parent="TitleLayer/Title/VBoxContainer/CategoryButtons"]
+margin_top = 50.0
+margin_right = 318.0
+margin_bottom = 96.3206
+disabled = true
+text = "Godot"
+
+[node name="SurpriseButton" type="Button" parent="TitleLayer/Title/VBoxContainer/CategoryButtons"]
+margin_top = 100.0
+margin_right = 318.0
+margin_bottom = 146.321
+disabled = true
+text = "Surprise"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TitleLayer/Title"]
+anims/FadeOut = SubResource( 8 )
+
+[node name="Tween" type="Tween" parent="TitleLayer/Title"]
+
+[node name="Reset" type="Button" parent="TitleLayer/Title"]
+margin_left = 8.88776
+margin_top = 493.533
+margin_right = 74.5481
+margin_bottom = 547.854
+text = "reset"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConnectionPanel" type="HBoxContainer" parent="TitleLayer/Title"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -125.0
+margin_top = -46.0
+margin_right = 125.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TitleLayer/Title/ConnectionPanel"]
+margin_top = 5.0
+margin_right = 132.0
+margin_bottom = 40.0
+text = "Connecting..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConnectButton" type="Button" parent="TitleLayer/Title/ConnectionPanel"]
+margin_left = 136.0
+margin_right = 250.66
+margin_bottom = 46.3206
+text = "Try again"
+
+[node name="TransitionLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="TransitionLayer"]
+material = SubResource( 10 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.43201
+margin_right = 1.43201
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TransitionAnimation" type="AnimationPlayer" parent="TransitionLayer"]
+anims/FadeIn = SubResource( 12 )
+anims/FadeOut = SubResource( 11 )
 [connection signal="finished" from="CreatorLayer/CharacterCreator" to="." method="_on_CharacterCreator_finished"]
 [connection signal="pressed" from="CreatorLayer/CharacterCreator/VBoxContainer/Button" to="CreatorLayer/CharacterCreator" method="_on_Button_pressed"]
 [connection signal="timeout" from="GameLayer/HUD/SpeechPanel/SpeechTimer" to="." method="_on_SpeechTimer_timeout"]
 [connection signal="timeout" from="GameLayer/HUD/SpeechPanel/HideTimer" to="." method="_on_HideTimer_timeout"]
+[connection signal="pressed" from="GameLayer/HUD/GameOverPanel/VBoxContainer/MenuButton" to="." method="_on_MenuButton_pressed"]
+[connection signal="category_selected" from="TitleLayer/Title" to="." method="_on_Title_category_selected"]
+[connection signal="create_pressed" from="TitleLayer/Title" to="." method="_on_Title_create_pressed"]
+[connection signal="pressed" from="TitleLayer/Title/VBoxContainer/CreateCharacterButton" to="TitleLayer/Title" method="_on_CreateCharacterButton_pressed"]
+[connection signal="pressed" from="TitleLayer/Title/VBoxContainer/CategoryButtons/GamingButton" to="TitleLayer/Title" method="_on_GamingButton_pressed"]
+[connection signal="pressed" from="TitleLayer/Title/VBoxContainer/CategoryButtons/GodotButton" to="TitleLayer/Title" method="_on_GodotButton_pressed"]
+[connection signal="pressed" from="TitleLayer/Title/VBoxContainer/CategoryButtons/SurpriseButton" to="TitleLayer/Title" method="_on_SurpriseButton_pressed"]
+[connection signal="pressed" from="TitleLayer/Title/Reset" to="." method="_on_Reset_pressed"]
+[connection signal="pressed" from="TitleLayer/Title/ConnectionPanel/ConnectButton" to="." method="_on_ConnectButton_pressed"]
+[connection signal="animation_finished" from="TransitionLayer/TransitionAnimation" to="." method="_on_TransitionAnimation_animation_finished"]
+
+[editable path="CreatorLayer/CharacterCreator/VBoxContainer/ActorPanel/Control/Actor"]
+
+[editable path="TitleLayer/Title/Actor"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://autoload/WebHandler.gd" type="Script" id=1]
+
+[node name="WebHandler" type="Node"]
+script = ExtResource( 1 )
+
+[node name="LobbyRequest" type="HTTPRequest" parent="."]
+
+[node name="AnswerUpload" type="HTTPRequest" parent="."]
+
+[node name="ConnectionTest" type="HTTPRequest" parent="."]
+[connection signal="request_completed" from="LobbyRequest" to="." method="_on_LobbyRequest_request_completed"]
+[connection signal="request_completed" from="ConnectionTest" to="." method="_on_ConnectionTest_request_completed"]

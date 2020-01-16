@@ -1,5 +1,7 @@
 extends Node2D
+class_name Actor
 
+export var starts_high = false
 
 var head_frame = 0 setget set_head_frame
 var body_frame = 0 setget set_body_frame
@@ -17,12 +19,24 @@ var uni_bodies = [0,1,2,3,4,5,6,7]
 
 var player_name = "Anonymous" setget set_player_name
 onready var name_label = $Body/NameLabel
+onready var anims = $BaseAnimations
+
+var answer_list = []
+
 var dark = false setget set_dark
+var score = 0
+export var alive = true
 
 func _ready():
 	pass
+	if starts_high:
+		$Body.position.y = -1000
 #	$Body/Head/Sprite.frame = head_frame
 #	$Body/Sprite.frame = body_frame + int(dark)
+func set_name_and_looks(n, b, h):
+	set_body_frame(b)
+	set_head_frame(h)
+	set_player_name(n)
 
 func read_from_string(string):
 	var s = string.split(",")
@@ -45,7 +59,6 @@ func set_head_frame(f):
 		dark = false
 	$Body/Head/Sprite.frame = head_frame
 	set_body_frame(body_frame)
-	print("head frame %s, is dark: %s" %[ str(head_frame), str(dark)])
 
 func set_body_frame(f):
 	body_frame = f
@@ -60,8 +73,13 @@ func set_body_frame(f):
 	$Body/ArmLeft/Sprite.frame = arm_map[body_frame] + int(dark) + arm_frame_offset
 	$Body/ArmRight/Sprite.frame = arm_map[body_frame] + int(dark) + arm_frame_offset
 
-	print("head: %s, body: %s, arm: %s, leg: : %s" % [str(head_frame), str(body_frame), str(leg_map[body_frame]), str( arm_map[body_frame] ) ] )
+func show_answer(idx):
+	$Body/AnswerLabel.text = str(int(answer_list[idx])+1)
+	$AnswerAnim.play("Reveal")
 
+func show_player_answer(a):
+	$Body/AnswerLabel.text = str(a+1)
+	$AnswerAnim.play("Reveal")
 
 func set_dark(d):
 	dark = d

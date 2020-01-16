@@ -1,12 +1,20 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/characters/Nosecondchances.png" type="Texture" id=1]
 [ext_resource path="res://scenes/actor/Actor.gd" type="Script" id=2]
 [ext_resource path="res://assets/Fonts/JandaManateeSolid.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/items/Blood.png" type="Texture" id=4]
+[ext_resource path="res://assets/items/10Tons.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=2]
 size = 32
 outline_color = Color( 1, 0.12549, 0.337255, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 96
+outline_size = 6
+outline_color = Color( 0.223529, 0.141176, 0.0901961, 1 )
 font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=1]
@@ -50,6 +58,83 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -1000 ), Vector2( 0, -60 ), Vector2( 0, -96 ) ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "Smash"
+length = 2.0
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("10Tons:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.15, 0.6, 0.65 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -1080 ), Vector2( 0, 8 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.525, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.525, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -96 ), Vector2( 0, 16 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Blood:scale")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.65, 1.875 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 2.5, 2.5 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:alive")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
 [sub_resource type="Animation" id=3]
 resource_name = "Wave"
 length = 3.0
@@ -66,11 +151,41 @@ tracks/0/keys = {
 "values": [ -35.0, -151.977, -132.481, -151.977, -132.481, -35.0 ]
 }
 
+[sub_resource type="Animation" id=6]
+resource_name = "Reveal"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/AnswerLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/AnswerLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Actor" type="Node2D"]
 script = ExtResource( 2 )
+alive = false
 
 [node name="Body" type="Node2D" parent="."]
 position = Vector2( 0, -96 )
+scale = Vector2( 1, 0.999999 )
 
 [node name="ArmLeft" type="Node2D" parent="Body"]
 position = Vector2( -23, -38 )
@@ -155,6 +270,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AnswerLabel" type="Label" parent="Body"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -128.0
+margin_top = -296.0
+margin_right = 128.0
+margin_bottom = -150.0
+rect_min_size = Vector2( 256, 0 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "1"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="BaseAnimations" type="AnimationPlayer" parent="."]
 anims/Fall = SubResource( 1 )
+anims/Smash = SubResource( 4 )
 anims/Wave = SubResource( 3 )
+
+[node name="Blood" type="Sprite" parent="."]
+position = Vector2( 0, 32 )
+scale = Vector2( 1.00608e-05, 1.00608e-05 )
+z_index = -1
+texture = ExtResource( 4 )
+
+[node name="10Tons" type="Sprite" parent="."]
+position = Vector2( 0, -1080 )
+texture = ExtResource( 5 )
+
+[node name="AnswerAnim" type="AnimationPlayer" parent="."]
+anims/Reveal = SubResource( 6 )

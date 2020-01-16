@@ -46,15 +46,15 @@ func head_pressed(val):
 	actor.head_frame = head_val
 	head_value_label.text = value_string % [str(head_val), str(15)]
 
-func create_character_string():
-	var string = $VBoxContainer/NameRow/LineEdit.text
-	string = string.split(",")[0] + ","
+func clean(string):
 	string = string.replace("Penis", "Funny")
 	string = string.replace("penis", "Funny")
-	string += str(head_val) + ","
-	string += str(body_val) + ","
+	string = string.replace("-", "")
 	return(string)
 
 
 func _on_Button_pressed():
+	user_data.player_name = clean($VBoxContainer/NameRow/LineEdit.text)
+	user_data.head = head_val
+	user_data.body = body_val
 	emit_signal("finished")
