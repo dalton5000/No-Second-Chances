@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/119029__joedeshon__polite-applause-09.wav-47c9a50b720f03e966fc632e704d753a.sample"
+
+[deps]
+
+source_file="res://assets/sfx/119029__joedeshon__polite-applause-09.wav"
+dest_files=[ "res://.import/119029__joedeshon__polite-applause-09.wav-47c9a50b720f03e966fc632e704d753a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

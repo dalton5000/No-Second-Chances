@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ohmyclap.ogg-0e621e8b47fdac4f8dd81d45bede7024.oggstr"
+
+[deps]
+
+source_file="res://assets/sfx/ohmyclap.ogg"
+dest_files=[ "res://.import/ohmyclap.ogg-0e621e8b47fdac4f8dd81d45bede7024.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

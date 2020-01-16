@@ -1,7 +1,24 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/actor/Actor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/actor/Showmaster.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "groove"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Head:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3, -49 ), Vector2( -3, -49 ), Vector2( 3, -49 ) ]
+}
 
 [node name="Showmaster" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -21,5 +38,12 @@ frame = 489
 [node name="Sprite" parent="Body" index="5"]
 frame = 47
 
+[node name="Head" parent="Body" index="6"]
+position = Vector2( 3, -49 )
+
 [node name="Sprite" parent="Body/Head" index="0"]
 frame = 15
+
+[node name="ShowmasterAnim" type="AnimationPlayer" parent="." index="5"]
+playback_speed = 1.1
+anims/groove = SubResource( 1 )

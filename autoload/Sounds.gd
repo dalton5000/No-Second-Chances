@@ -10,4 +10,4 @@ func button_pressed():
 
 func _ready():
 	for button in get_tree().get_nodes_in_group("button"):
-		button.connect("pressed",self,"button_pressed")
+		button.connect("button_down",self,"button_pressed")

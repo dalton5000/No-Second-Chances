@@ -60,11 +60,15 @@ var active_state = STATES.MENU
 func change_state(new_state):
 	var last_state = active_state
 	active_state = new_state
+
+
 	match new_state:
 		STATES.MENU:
+			$Music.fade_to($Music.title_music)
 			disable_categories()
 			load_menu()
 		STATES.INTRO:
+			$Music.fade_to($Music.game_music)
 			start_intro()
 		STATES.QUESTION:
 			set_answers_enabled()
@@ -128,6 +132,7 @@ func start_intro():
 	$GameLayer/Stage/Showmaster.get_node("BaseAnimations").play("Wave")
 	yield(self,"speech_complete")
 	actors[0].get_node("BaseAnimations").play("Wave")
+	Sounds.play("applause1")
 	say("The quizshow without mercy!\nLet's see who will be your opponents",3.5)
 	yield(self,"speech_complete")
 	for actor in [1,2,3,4]:
@@ -136,6 +141,7 @@ func start_intro():
 	say("Welcome %s, %s, %s and %s!" % player_names)
 	yield(self,"speech_complete")
 	candidates_wave()
+	Sounds.play("applause2")
 #	say("Here are the Rules:")
 	say("So let's get started\nwith question number one!", 2.0)
 	yield(self,"speech_complete")
@@ -148,13 +154,16 @@ func start_validation():
 	for i in [1,2,3,4]:
 		actors[i].show_answer(current_question)
 	yield(self,"speech_complete")
-
-	say("And the correct answer is... " + str(int(data.answers[active_category][current_question][4])+1) +"!!")
+	Sounds.play("drumroll")
+	say("And the correct answer is...", 4.0)
+	yield(self,"speech_complete")
+	say(str(int(data.answers[active_category][current_question][4])+1) +" !!")
 	yield(self,"speech_complete")
 
 	if validate(given_answer):
 		say("You are correct!")
 		yield(self,"speech_complete")
+		Sounds.play("applause1")
 		question_anim.play("SlideOut")
 		current_question+=1
 		yield(question_anim,"animation_finished")
@@ -169,7 +178,9 @@ func start_validation():
 
 			yield(self,"speech_complete")
 			check_candidates()
-			say("RIP\n But let's continue with the next question'")
+			yield(get_tree().create_timer(0.4),"timeout")
+			Sounds.play("ohmygod")
+			say("RIP\nBut let's continue with the next question'")
 		yield(self,"speech_complete")
 		change_state(STATES.QUESTION)
 	else:
@@ -185,6 +196,8 @@ func start_gameover():
 	question_anim.play("Fall")
 	yield(get_tree().create_timer(1.0),"timeout")
 	player.anims.play("Smash")
+	yield(get_tree().create_timer(0.5),"timeout")
+	Sounds.play("ohmygod")
 	yield(get_tree().create_timer(2.0),"timeout")
 	say("Goodbye and until next time!")
 	candidates_wave()
@@ -306,7 +319,7 @@ func check_candidates():
 			actors[i].score += 1
 		else:
 			actors[i].anims.play("Smash")
-			yield(get_tree().create_timer(0.1),"timeout")
+			yield(get_tree().create_timer(0.3),"timeout")
 
 func _on_CharacterCreator_finished():
 	transition.play("FadeOut")

@@ -11,7 +11,7 @@ func character_created():
 	$Actor.show_name(true)
 
 func _ready():
-	pass
+	$Showmaster/ShowmasterAnim.play("groove")
 
 func _on_SurpriseButton_pressed():
 	emit_signal("category_selected", "surprise")

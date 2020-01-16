@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/actor/Actor.tscn" type="PackedScene" id=2]
@@ -6,10 +6,13 @@
 [ext_resource path="res://assets/theme.tres" type="Theme" id=4]
 [ext_resource path="res://scenes/actor/Showmaster.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/stage/stage.png" type="Texture" id=6]
+[ext_resource path="res://assets/music/4624-whiskey-on-the-mississippi-by-kevin-macleod.ogg" type="AudioStream" id=7]
 [ext_resource path="res://assets/Fonts/JandaManateeSolid.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://scenes/Title.gd" type="Script" id=9]
 [ext_resource path="res://assets/shader/transition.shader" type="Shader" id=10]
 [ext_resource path="res://assets/shader/curtain.png" type="Texture" id=11]
+[ext_resource path="res://scenes/Music.gd" type="Script" id=12]
+[ext_resource path="res://assets/music/The Show Must Be Go.ogg" type="AudioStream" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 0.352941, 0.352941, 0.341176 )
@@ -770,6 +773,22 @@ __meta__ = {
 [node name="TransitionAnimation" type="AnimationPlayer" parent="TransitionLayer"]
 anims/FadeIn = SubResource( 10 )
 anims/FadeOut = SubResource( 11 )
+
+[node name="Music" type="Node" parent="."]
+script = ExtResource( 12 )
+
+[node name="TitleMusic" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 7 )
+volume_db = -80.0
+autoplay = true
+bus = "Music"
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 13 )
+volume_db = -80.0
+bus = "Music"
+
+[node name="Tween" type="Tween" parent="Music"]
 [connection signal="finished" from="CreatorLayer/CharacterCreator" to="." method="_on_CharacterCreator_finished"]
 [connection signal="pressed" from="CreatorLayer/CharacterCreator/VBoxContainer/Button" to="CreatorLayer/CharacterCreator" method="_on_Button_pressed"]
 [connection signal="timeout" from="GameLayer/HUD/SpeechPanel/SpeechTimer" to="." method="_on_SpeechTimer_timeout"]

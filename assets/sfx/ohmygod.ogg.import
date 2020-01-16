@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ohmygod.ogg-4ce2d065d1fa82a455cc67cb11fe193a.oggstr"
+
+[deps]
+
+source_file="res://assets/sfx/ohmygod.ogg"
+dest_files=[ "res://.import/ohmygod.ogg-4ce2d065d1fa82a455cc67cb11fe193a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/4624-whiskey-on-the-mississippi-by-kevin-macleod.ogg-7d44a21364e9841233a37bdaeefff0f0.oggstr"
+
+[deps]
+
+source_file="res://assets/music/4624-whiskey-on-the-mississippi-by-kevin-macleod.ogg"
+dest_files=[ "res://.import/4624-whiskey-on-the-mississippi-by-kevin-macleod.ogg-7d44a21364e9841233a37bdaeefff0f0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

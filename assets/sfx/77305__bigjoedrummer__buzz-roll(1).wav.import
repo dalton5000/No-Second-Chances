@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/77305__bigjoedrummer__buzz-roll(1).wav-a5fc7d6324e4cfd3e9cc386a6aadc5b3.sample"
+
+[deps]
+
+source_file="res://assets/sfx/77305__bigjoedrummer__buzz-roll(1).wav"
+dest_files=[ "res://.import/77305__bigjoedrummer__buzz-roll(1).wav-a5fc7d6324e4cfd3e9cc386a6aadc5b3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

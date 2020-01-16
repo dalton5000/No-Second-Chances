@@ -1,10 +1,26 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://autoload/Sounds.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/switch4.ogg" type="AudioStream" id=2]
+[ext_resource path="res://assets/sfx/119029__joedeshon__polite-applause-09.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sfx/applause2.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/sfx/ohmyclap.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/sfx/77305__bigjoedrummer__buzz-roll(1).wav" type="AudioStream" id=6]
 
 [node name="Sounds" type="Node"]
 script = ExtResource( 1 )
 
 [node name="click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+
+[node name="applause1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="applause2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="ohmygod" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="drumroll" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )

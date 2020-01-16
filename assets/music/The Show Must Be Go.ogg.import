@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/The Show Must Be Go.ogg-b99a4264171150ed92b06090fd34a71c.oggstr"
+
+[deps]
+
+source_file="res://assets/music/The Show Must Be Go.ogg"
+dest_files=[ "res://.import/The Show Must Be Go.ogg-b99a4264171150ed92b06090fd34a71c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
