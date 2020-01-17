@@ -3,7 +3,7 @@ extends Control
 signal finished
 
 const HEAD_MAX = 13
-const BODY_MAX = 15
+const BODY_MAX = 16
 
 var head_val = 0
 var body_val = 0

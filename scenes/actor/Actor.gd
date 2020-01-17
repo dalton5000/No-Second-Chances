@@ -12,10 +12,10 @@ var body_frame_offset = 16
 var leg_frame_offset = 480
 var arm_frame_offset = 768
 
-var body_map = [0,1,2,3,4,5,6,7,8,10,12,14,16,18,20,22]
-var arm_map = [0,2,4,8,4,2,8,0,4,2,8,0,10,10,10,10,10,10,10,10,0,0,0,0,0,0,0]
-var leg_map = [0,3,1,2,1,1,1,0,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0]
-var uni_bodies = [0,1,2,3,4,5,6,7]
+var body_map = [0,1,2,3,4,5,6,7,8,10,12,14,16,18,20,22,24]
+var arm_map = [0,2,4,8,4,0,8,2,4,2,8,0,10,10,10,0,4,10,10,10,0,0,0,0,0,0,0]
+var leg_map = [0,3,1,2,1,0,1,1,4,4,4,4,4,4,4,0,1,1,0,0,0,0,0,0,0]
+var uni_bodies = [0,1,2,3,4,5,6,7,15,16]
 
 var player_name = "Anonymous" setget set_player_name
 onready var name_label = $Body/NameLabel
