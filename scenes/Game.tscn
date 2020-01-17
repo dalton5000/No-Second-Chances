@@ -755,6 +755,10 @@ margin_right = 250.66
 margin_bottom = 46.3206
 text = "Try again"
 
+[node name="Wave" type="Timer" parent="TitleLayer/Title"]
+wait_time = 5.0
+autostart = true
+
 [node name="TransitionLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="TransitionLayer"]
@@ -802,6 +806,7 @@ bus = "Music"
 [connection signal="pressed" from="TitleLayer/Title/VBoxContainer/CategoryButtons/SurpriseButton" to="TitleLayer/Title" method="_on_SurpriseButton_pressed"]
 [connection signal="pressed" from="TitleLayer/Title/Reset" to="." method="_on_Reset_pressed"]
 [connection signal="pressed" from="TitleLayer/Title/ConnectionPanel/ConnectButton" to="." method="_on_ConnectButton_pressed"]
+[connection signal="timeout" from="TitleLayer/Title/Wave" to="TitleLayer/Title" method="_on_Wave_timeout"]
 [connection signal="animation_finished" from="TransitionLayer/TransitionAnimation" to="." method="_on_TransitionAnimation_animation_finished"]
 
 [editable path="CreatorLayer/CharacterCreator/VBoxContainer/ActorPanel/Control/Actor"]

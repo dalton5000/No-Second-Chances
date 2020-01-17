@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/aah2.wav-1a414c49165e9cd4fea528bb628c3d4c.sample"
+
+[deps]
+
+source_file="res://assets/sfx/aah2.wav"
+dest_files=[ "res://.import/aah2.wav-1a414c49165e9cd4fea528bb628c3d4c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

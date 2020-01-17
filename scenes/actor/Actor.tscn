@@ -381,6 +381,7 @@ anims/Smash = SubResource( 4 )
 anims/Wave = SubResource( 5 )
 
 [node name="Blood" type="Sprite" parent="."]
+visible = false
 position = Vector2( 0, 32 )
 scale = Vector2( 0.0900232, 0.0900232 )
 z_index = -1
@@ -402,7 +403,6 @@ volume_db = -8.0
 
 [node name="Hit2" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource( 11 )
-volume_db = -4.0
 pitch_scale = 0.6
 
 [node name="Woosh" type="AudioStreamPlayer2D" parent="."]

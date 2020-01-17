@@ -2,7 +2,11 @@ extends Node
 
 
 func play(sound):
-	get_node(sound).play()
+	if sound == "aah":
+		var s = ["aah1","aah2","aah3"][randi()%3]
+		get_node(s).play()
+	else:
+		get_node(sound).play()
 
 
 func button_pressed():

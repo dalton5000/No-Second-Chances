@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://autoload/Sounds.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/switch4.ogg" type="AudioStream" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://assets/sfx/applause2.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sfx/ohmyclap.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/sfx/77305__bigjoedrummer__buzz-roll(1).wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sfx/reveal.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sfx/aah1.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sfx/aah2.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sfx/aah3.wav" type="AudioStream" id=10]
 
 [node name="Sounds" type="Node"]
 script = ExtResource( 1 )
@@ -24,3 +28,15 @@ stream = ExtResource( 5 )
 
 [node name="drumroll" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+
+[node name="reveal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="aah1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="aah2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="aah3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )

@@ -149,7 +149,8 @@ func start_intro():
 
 func start_validation():
 	say("Let's see everybodies answers...",2.0)
-	yield(get_tree().create_timer(1.0), "timeout")
+	yield(get_tree().create_timer(2.0), "timeout")
+	Sounds.play("reveal")
 	player.show_player_answer(given_answer)
 	for i in [1,2,3,4]:
 		actors[i].show_answer(current_question)
@@ -157,6 +158,7 @@ func start_validation():
 	Sounds.play("drumroll")
 	say("And the correct answer is...", 4.0)
 	yield(self,"speech_complete")
+	Sounds.play("aah")
 	say(str(int(data.answers[active_category][current_question][4])+1) +" !!")
 	yield(self,"speech_complete")
 
@@ -355,6 +357,7 @@ func _ready():
 	if user_data.player_name != "":
 		$TitleLayer/Title/VBoxContainer/CreateCharacterButton.hide()
 		$TitleLayer/Title.character_created()
+
 		for b in cat_buttons:
 			b.disabled = false
 

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/aah1.wav-d8301417af8ec64f6354a9fac37f7a0c.sample"
+
+[deps]
+
+source_file="res://assets/sfx/aah1.wav"
+dest_files=[ "res://.import/aah1.wav-d8301417af8ec64f6354a9fac37f7a0c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
