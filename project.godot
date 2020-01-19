@@ -41,6 +41,10 @@ Sounds="*res://autoload/Sounds.tscn"
 
 gdscript/warnings/enable=false
 
+[display]
+
+window/stretch/aspect="keep"
+
 [importer_defaults]
 
 ogg_vorbis={

@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/Fonts/JandaManateeSolid.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/items/Blood.png" type="Texture" id=4]
 [ext_resource path="res://assets/items/10Tons.png" type="Texture" id=5]
-[ext_resource path="res://assets/sfx/118513__thefsoundman__punch-02.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sfx/hit.ogg" type="AudioStream" id=6]
 [ext_resource path="res://assets/sfx/216675__hitrison__stick-swoosh-whoosh.ogg" type="AudioStream" id=7]
 [ext_resource path="res://assets/sfx/47340__angel-perez-grandi__filth-squash.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/sfx/209771__johnnyfarmer__metal-hit-cartoon.wav" type="AudioStream" id=9]
@@ -246,7 +246,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=11]
-length = 4.0
+length = 7.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/AnswerLabel:visible")
 tracks/0/interp = 1
@@ -254,7 +254,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 3.6 ),
+"times": PoolRealArray( 0, 0.1, 6.9 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false ]
@@ -277,7 +277,7 @@ script = ExtResource( 2 )
 alive = false
 
 [node name="Body" type="Node2D" parent="."]
-position = Vector2( 0, -95.9999 )
+position = Vector2( 0, -96 )
 scale = Vector2( 1, 0.999999 )
 
 [node name="ArmLeft" type="Node2D" parent="Body"]
@@ -365,6 +365,7 @@ __meta__ = {
 
 [node name="AnswerLabel" type="Label" parent="Body"]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 margin_left = -128.0
 margin_top = -296.0
 margin_right = 128.0
@@ -397,17 +398,17 @@ texture = ExtResource( 5 )
 [node name="AnswerAnim" type="AnimationPlayer" parent="."]
 anims/Reveal = SubResource( 11 )
 
-[node name="Squash" type="AudioStreamPlayer2D" parent="."]
+[node name="Squash" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 6 )
 
-[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+[node name="Hit" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 7 )
 volume_db = -8.0
 
-[node name="Hit2" type="AudioStreamPlayer2D" parent="."]
+[node name="Hit2" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 4 )
-pitch_scale = 0.6
+volume_db = -6.0
 
-[node name="Woosh" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource( 8 )
-pitch_scale = 1.5
+[node name="Woosh" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 3 )
+volume_db = -8.0

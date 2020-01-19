@@ -10,6 +10,8 @@ func character_created():
 	$Actor.anims.play("Fall")
 	$Actor.show_name(true)
 	created = true
+	$Wave.stop()
+	$Wave.start()
 
 func _ready():
 	$Showmaster/ShowmasterAnim.play("groove")

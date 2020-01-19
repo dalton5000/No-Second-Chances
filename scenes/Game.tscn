@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/actor/Actor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/hud/CharacterCreator.gd" type="Script" id=3]
+[ext_resource path="res://assets/Fonts/JandaManateeSolid.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scenes/actor/Showmaster.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/stage/stage.png" type="Texture" id=6]
 [ext_resource path="res://assets/music/4624-whiskey-on-the-mississippi-by-kevin-macleod.ogg" type="AudioStream" id=7]
@@ -25,6 +26,14 @@ margin_left = 14.0
 margin_right = 14.0
 margin_top = 14.0
 margin_bottom = 14.0
+
+[sub_resource type="DynamicFont" id=12]
+size = 96
+outline_size = 2
+outline_color = Color( 0.0235294, 0.0313726, 0.25098, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Fall"
@@ -67,9 +76,77 @@ tracks/2/keys = {
 "values": [ Vector2( 626, -350 ), Vector2( 626, 23.8985 ), Vector2( 626, 6 ) ]
 }
 
+[sub_resource type="Animation" id=14]
+resource_name = "RevealAnswer"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpeechPanel/AnswerLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "ShowAnswers"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("QuestionPanel/VBoxContainer/HBoxContainer/Button:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("QuestionPanel/VBoxContainer/HBoxContainer/Button2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("QuestionPanel/VBoxContainer/HBoxContainer2/Button:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("QuestionPanel/VBoxContainer/HBoxContainer2/Button2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.9, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [sub_resource type="Animation" id=4]
 resource_name = "ShowQuestion"
-length = 2.0
+length = 0.5
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("QuestionPanel/VBoxContainer/Label:percent_visible")
 tracks/0/interp = 1
@@ -79,54 +156,6 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.3 )
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("QuestionPanel/VBoxContainer/HBoxContainer/Button:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("QuestionPanel/VBoxContainer/HBoxContainer/Button2:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("QuestionPanel/VBoxContainer/HBoxContainer2/Button:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.7, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("QuestionPanel/VBoxContainer/HBoxContainer2/Button2:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.9, 1.1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -180,7 +209,24 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 30, 382 ), Vector2( 100, 382 ), Vector2( -800, 382 ) ]
+"values": [ Vector2( 30, 382 ), Vector2( 100, 382 ), Vector2( -1000, 382 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Win"
+length = 5.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameOverPanel:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1.55, 1.9, 2.05 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 626, -350 ), Vector2( 626, 23.8985 ), Vector2( 626, 6 ) ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -434,7 +480,7 @@ position = Vector2( 630.857, 478.857 )
 position = Vector2( 790.857, 478.857 )
 
 [node name="Showmaster" parent="GameLayer/Stage" instance=ExtResource( 5 )]
-position = Vector2( 907.917, 528.283 )
+position = Vector2( 883.917, 536.283 )
 alive = true
 
 [node name="HUD" type="Control" parent="GameLayer"]
@@ -451,7 +497,7 @@ anchor_bottom = 1.0
 margin_left = -800.0
 margin_top = -218.0
 margin_right = -56.0
-margin_bottom = -1.2088
+margin_bottom = -1.20868
 theme = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -467,7 +513,6 @@ margin_bottom = 204.791
 margin_right = 720.0
 margin_bottom = 35.0
 text = "Which character was not playable in Super Mario Kart?"
-percent_visible = 0.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/HUD/QuestionPanel/VBoxContainer"]
 margin_top = 39.0
@@ -554,9 +599,22 @@ margin_right = 346.0
 margin_bottom = 187.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-text = "pok"
+text = "pok123"
 autowrap = true
 percent_visible = 0.0
+
+[node name="AnswerLabel" type="Label" parent="GameLayer/HUD/SpeechPanel"]
+margin_left = 14.0
+margin_top = 14.0
+margin_right = 346.0
+margin_bottom = 187.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 12 )
+align = 1
+valign = 2
+autowrap = true
+percent_visible = -1.0
 
 [node name="Tween" type="Tween" parent="GameLayer/HUD/SpeechPanel"]
 
@@ -570,9 +628,33 @@ one_shot = true
 
 [node name="QuestionAnim" type="AnimationPlayer" parent="GameLayer/HUD"]
 anims/Fall = SubResource( 3 )
+anims/RevealAnswer = SubResource( 14 )
+anims/ShowAnswers = SubResource( 15 )
 anims/ShowQuestion = SubResource( 4 )
 anims/SlideIn = SubResource( 5 )
 anims/SlideOut = SubResource( 6 )
+anims/Win = SubResource( 13 )
+
+[node name="CounterPanel" type="PanelContainer" parent="GameLayer/HUD"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -95.0
+margin_top = -67.0
+margin_right = -8.0
+margin_bottom = -8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CounterLabel" type="Label" parent="GameLayer/HUD/CounterPanel"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 75.0
+margin_bottom = 47.0
+text = "0/10"
+align = 1
 
 [node name="GameOverPanel" type="PanelContainer" parent="GameLayer/HUD"]
 anchor_left = 0.5

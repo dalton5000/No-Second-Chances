@@ -5,8 +5,10 @@ signal speech_complete
 
 
 
-var current_question = 8
+var current_question = 8 setget set_current_question
 var given_answer = 0
+
+onready var counter_label = $GameLayer/HUD/CounterPanel/CounterLabel
 
 onready var answer_buttons = [
 	$GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer/Button,
@@ -43,6 +45,7 @@ onready var player = actors[0] as Actor
 onready var speech_label = $GameLayer/HUD/SpeechPanel/Label
 onready var speech_tween = $GameLayer/HUD/SpeechPanel/Tween
 onready var speech_timer  = $GameLayer/HUD/SpeechPanel/SpeechTimer
+onready var answer_label = $GameLayer/HUD/SpeechPanel/AnswerLabel
 
 onready var question_label = $GameLayer/HUD/QuestionPanel/VBoxContainer/Label
 onready var gameover_label = $GameLayer/HUD/GameOverPanel/VBoxContainer/GameOverLabel
@@ -114,6 +117,8 @@ func load_next_question():
 	Sounds.play_question(active_category, current_question)
 	yield($GameLayer/HUD/QuestionAnim,"animation_finished")
 	$GameLayer/HUD/QuestionAnim.play("ShowQuestion")
+	yield(Sounds,"voice_completed")
+	$GameLayer/HUD/QuestionAnim.play("ShowAnswers")
 
 func load_menu():
 	$GameLayer/Stage.hide()
@@ -132,33 +137,33 @@ func start_intro():
 
 	yield(get_tree().create_timer(2.5),"timeout")
 
-
-	Sounds.play_voice("welcome")
-	say(data.get_line("welcome"),8.0)
-	yield(Sounds,"voice_completed")
-	$GameLayer/Stage/Showmaster.get_node("BaseAnimations").play("Wave")
-	say(data.get_line("banter"),8.0)
-	Sounds.play_voice("banter")
-	Sounds.play("applause2")
-	yield(Sounds,"voice_completed")
-
-	say("Let\'s say hello to today\'s contender! I would tell you who they are, but they would appear to have put their namebadge on upside down.", 8.0)
-	Sounds.play_voice("hereiscandidate")
+###############
+#	Sounds.play_voice("welcome")
+#	say(data.get_line("welcome"),8.0)
+#	yield(Sounds,"voice_completed")
+#	$GameLayer/Stage/Showmaster.get_node("BaseAnimations").play("Wave")
+#	say(data.get_line("banter"),8.0)
+#	Sounds.play_voice("banter")
+#	Sounds.play("applause2")
+#	yield(Sounds,"voice_completed")
+#
+#	say("Let\'s say hello to today\'s contender! I would tell you who they are, but they would appear to have put their namebadge on upside down.", 8.0)
+#	Sounds.play_voice("hereiscandidate")
 	player.fall()
-	yield(Sounds,"voice_completed")
-	actors[0].get_node("BaseAnimations").play("Wave")
-	Sounds.play("applause1")
-	say("You have chosen the category %s. Very well! Let’s see who will be your opponents." % [active_category], 6.0)
-	Sounds.play_voice("category_calls/" + active_category)
-	yield(Sounds,"voice_completed")
+#	yield(Sounds,"voice_completed")
+#	actors[0].get_node("BaseAnimations").play("Wave")
+#	Sounds.play("applause1")
+#	say("You have chosen the category %s. Very well! Let’s see who will be your opponents." % [active_category], 6.0)
+#	Sounds.play_voice("category_calls/" + active_category)
+#	yield(Sounds,"voice_completed")
 
-	Sounds.play_voice("opponents")
-	yield(Sounds,"voice_completed")
-
-	Sounds.play_voice("interlude")
-	say(data.get_line("interlude"),4.0)
-	yield(Sounds,"voice_completed")
-
+#	Sounds.play_voice("opponents")
+#	yield(Sounds,"voice_completed")
+#
+#	Sounds.play_voice("interlude")
+#	say(data.get_line("interlude"),4.0)
+#	yield(Sounds,"voice_completed")
+##########
 
 #	yield(self,"speech_complete")
 	for actor in [1,2,3,4]:
@@ -171,10 +176,10 @@ func start_intro():
 	candidates_wave()
 	Sounds.play("applause2")
 
-	say(data.get_line("candidate_banter"),8.0)
-	Sounds.play_voice("candidate_banter")
+#	say(data.get_line("candidate_banter"),8.0)
+#	Sounds.play_voice("candidate_banter")
 
-	yield(Sounds,"voice_completed")
+#	yield(Sounds,"voice_completed")
 
 #	say("Here\'s your first question.\nPro Tip: Don\'t bottle it.'", 3.0)
 	if current_question == 0:
@@ -192,9 +197,9 @@ func start_intro():
 
 func start_validation():
 	Sounds.play_voice("see_answers")
-	say(data.get_line("see_answers"),5.0)
-#	yield(Sounds,"voice_completed")
-	yield(self,"speech_complete")
+	say(data.get_line("see_answers"),2.0)
+	yield(Sounds,"voice_completed")
+#	yield(self,"speech_complete")
 
 	yield(get_tree().create_timer(1.0), "timeout")
 
@@ -210,8 +215,15 @@ func start_validation():
 	yield(get_tree().create_timer(3.0), "timeout")
 
 	Sounds.play("aah")
-	say(str(int(data.answers[active_category][current_question][4])+1) +" !!",3.0)
-	yield(self,"speech_complete")
+#	say(str(int(data.answers[active_category][current_question][4])+1) +" !!",3.0)
+	var correct_idx= data.answers[active_category][current_question][4]
+	answer_buttons[correct_idx].modulate = Color.lightgreen
+	answer_label.text = str(correct_idx+1) +"!"
+#	print(answer_label.text)
+#	question_anim.play("RevealAnswer")
+	yield(get_tree().create_timer(2.0), "timeout")
+	answer_label.text = ""
+#	yield(self,"speech_complete")
 
 	if validate(given_answer):
 		Sounds.play("correct")
@@ -221,17 +233,10 @@ func start_validation():
 		yield(Sounds,"voice_completed")
 		Sounds.play("applause1")
 		question_anim.play("SlideOut")
-		current_question+=1
 		yield(question_anim,"animation_finished")
+		answer_buttons[correct_idx].modulate = Color.white
 
-		if current_question == 5:
-			Sounds.play_voice("halfway")
-			yield(Sounds,"voice_completed")
-			say("We are, as they say, halfway there.\nWoohoo, living on a prayer!")
-		if current_question == 10:
-			Sounds.play_voice("finalquestion")
-			say("You have reached the final question of this category! Savour the moment of fame while it lasts.")
-			yield(Sounds,"voice_completed")
+
 
 
 
@@ -245,21 +250,38 @@ func start_validation():
 				Sounds.play_voice("cantbesaid")
 				yield(Sounds,"voice_completed")
 			else:
-				say("Everyone got this one right! What a surprise!")
-				Sounds.play_voice("everyoneright")
-				yield(Sounds,"voice_completed")
+				var alive = true
+				for i in [1,2,3,4]:
+					if actors[i].alive == false:
+						alive=false
+				if alive:
+					say("Everyone got this one right! What a surprise!")
+					Sounds.play_voice("everyoneright")
+					yield(Sounds,"voice_completed")
 
 			check_candidates()
 			yield(get_tree().create_timer(0.4),"timeout")
 			Sounds.play("ohmygod")
 			yield(get_tree().create_timer(2.4),"timeout")
 
-		if current_question == 10:
-			Sounds.play_voice("youdidit")
-			say("You did it! That was the last question of the category. You're much smarter than you look!",4.0)
-			yield(self,"speech_complete")
-			say("So, there is no prize for budgetary reasons, but you can tell your friends about your success!")
+		current_question+=1
+		if current_question == 4:
+			Sounds.play_voice("halfway")
 			yield(Sounds,"voice_completed")
+			say("We are, as they say, halfway there.\nWoohoo, living on a prayer!")
+
+		if current_question == 8:
+			Sounds.play_voice("finalquestion")
+			say("You have reached the final question of this category! Savour the moment of fame while it lasts.")
+			yield(Sounds,"voice_completed")
+		if current_question == 10:
+			Sounds.play("fanfare")
+			Sounds.play_voice("youdidit")
+			say("You did it! That was the last question of the category. You're much smarter than you look!",6.0)
+			yield(self,"speech_complete")
+			say("So, there is no prize for budgetary reasons, but you can tell your friends about your success!",6.0)
+#			yield(Sounds,"voice_completed")
+			yield(self,"speech_complete")
 			start_game_won()
 		else:
 			change_state(STATES.QUESTION)
@@ -272,8 +294,8 @@ func start_game_won():
 	user_data.set_cat_score(active_category, 10)
 	WebHandler.upload_answers(active_category, answers_given[active_category])
 	gameover_label.text = "You have won category %s\n Congratulations, and thank you for playing :)" % [active_category.capitalize()]
-
-	question_anim.play("Fall")
+	actors[0].get_node("BaseAnimations").play("Wave")
+	question_anim.play("Win")
 	candidates_wave()
 
 func start_gameover():
@@ -298,6 +320,7 @@ func start_gameover():
 	say("Goodbye and until next time!")
 	candidates_wave()
 
+	answer_buttons[data.answers[active_category][current_question][4]].modulate = Color.white
 #	yield(get_tree().create_timer(5.0),"timeout")
 #	change_state(STATES.MENU)
 
@@ -371,7 +394,9 @@ func disable_categories():
 			cat2button[category].text = category.capitalize()
 	print("Attempt numero: %s" % [str(data.attempt_numero)])
 #	data.attempt_numero = 8
-
+func set_current_question(q):
+	current_question = q
+	counter_label.text = str(q) + "/10"
 func candidates_wave():
 	for i in [1,2,3,4]:
 		if actors[i].alive:
@@ -511,7 +536,8 @@ func on_connection_ok():
 	$TitleLayer/Title/ConnectionPanel/ConnectButton.hide()
 
 func on_lobbies_loaded():
-	$TitleLayer/Title/ConnectionPanel/Label.text = "Ready to play!"
+#	$TitleLayer/Title/ConnectionPanel/Label.text = "Ready to play!"
+	$TitleLayer/Title/ConnectionPanel/Label.hide()
 
 func on_connection_failed():
 	$TitleLayer/Title/ConnectionPanel/Label.text = "Connection failed :( Check your firewall settings"

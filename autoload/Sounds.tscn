@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://autoload/Sounds.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/switch4.ogg" type="AudioStream" id=2]
@@ -70,6 +70,7 @@
 [ext_resource path="res://assets/vo/first_question3.ogg" type="AudioStream" id=68]
 [ext_resource path="res://assets/vo/youdidit.ogg" type="AudioStream" id=69]
 [ext_resource path="res://assets/vo/interlude.ogg" type="AudioStream" id=70]
+[ext_resource path="res://assets/vo/fanfare.wav" type="AudioStream" id=71]
 
 [node name="Sounds" type="Node"]
 script = ExtResource( 1 )
@@ -87,6 +88,10 @@ stream = ExtResource( 10 )
 
 [node name="click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+
+[node name="fanfare" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 71 )
+volume_db = -8.0
 
 [node name="correct" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 29 )
