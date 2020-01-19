@@ -242,8 +242,7 @@ func start_validation():
 			check_candidates()
 			yield(get_tree().create_timer(0.4),"timeout")
 			Sounds.play("ohmygod")
-			say("RIP\nBut let's continue with the next question'")
-			yield(self,"speech_complete")
+			yield(get_tree().create_timer(2.4),"timeout")
 
 		if current_question == 11:
 			Sounds.play("youdidit")
@@ -344,12 +343,12 @@ func answer_pressed(idx):
 func disable_categories():
 	data.attempt_numero = 0
 	for category in ["gaming","godot","surprise"]:
-		print("loaded category score: " + category)
-		print(user_data.category_score)
-		print(user_data.category_score[category])
+#		print("loaded category score: " + category)
+#		print(user_data.category_score)
+#		print(user_data.category_score[category])
 		if user_data.category_score[category] != -1:
 #			print(user_data.category_score[category])
-			print("closing")
+#			print("closing")
 			data.attempt_numero += 1
 			cat2button[category].disabled=true
 			cat2button[category].text = "%s %s / 10" % [category.capitalize(), str(user_data.category_score[category])]

@@ -22,8 +22,8 @@ func _on_LobbyRequest_request_completed(result, response_code, headers, body):
 	var json = JSON.parse(body.get_string_from_utf8())
 	lobbies = json.result["lobbies"]
 	emit_signal("lobbies_loaded")
-	print("lobbies loaded")
-	print (lobbies)
+#	print("lobbies loaded")
+#	print (lobbies)
 
 #func _physics_process(delta):
 #	if Input.is_action_just_pressed("ui_down"):
