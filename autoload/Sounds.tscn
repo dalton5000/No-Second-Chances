@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://autoload/Sounds.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/switch4.ogg" type="AudioStream" id=2]
@@ -60,6 +60,15 @@
 [ext_resource path="res://assets/vo/surprise-2.ogg" type="AudioStream" id=58]
 [ext_resource path="res://assets/vo/surprise-6.ogg" type="AudioStream" id=59]
 [ext_resource path="res://assets/vo/welcome2.ogg" type="AudioStream" id=60]
+[ext_resource path="res://assets/vo/banter1.ogg" type="AudioStream" id=61]
+[ext_resource path="res://assets/vo/see_answers2.ogg" type="AudioStream" id=62]
+[ext_resource path="res://assets/vo/see_answers3.ogg" type="AudioStream" id=63]
+[ext_resource path="res://assets/vo/candidatebanter3.ogg" type="AudioStream" id=64]
+[ext_resource path="res://assets/vo/candidatebanter2.ogg" type="AudioStream" id=65]
+[ext_resource path="res://assets/vo/candidatebanter1.ogg" type="AudioStream" id=66]
+[ext_resource path="res://assets/vo/first_question2.ogg" type="AudioStream" id=67]
+[ext_resource path="res://assets/vo/first_question3.ogg" type="AudioStream" id=68]
+[ext_resource path="res://assets/vo/youdidit.ogg" type="AudioStream" id=69]
 
 [node name="Sounds" type="Node"]
 script = ExtResource( 1 )
@@ -238,9 +247,40 @@ bus = "Voice"
 stream = ExtResource( 21 )
 bus = "Voice"
 
-[node name="imyourhost" type="AudioStreamPlayer" parent="Voice"]
+[node name="banter" type="Node" parent="Voice"]
+
+[node name="thatright" type="AudioStreamPlayer" parent="Voice/banter"]
+stream = ExtResource( 61 )
+bus = "Voice"
+
+[node name="imyourhost" type="AudioStreamPlayer" parent="Voice/banter"]
 stream = ExtResource( 22 )
 bus = "Voice"
+
+[node name="candidate_banter" type="Node" parent="Voice"]
+
+[node name="behold" type="AudioStreamPlayer" parent="Voice/candidate_banter"]
+stream = ExtResource( 66 )
+bus = "Voice"
+
+[node name="ahyes" type="AudioStreamPlayer" parent="Voice/candidate_banter"]
+stream = ExtResource( 65 )
+bus = "Voice"
+
+[node name="imsorry" type="AudioStreamPlayer" parent="Voice/candidate_banter"]
+stream = ExtResource( 64 )
+bus = "Voice"
+
+[node name="first_question" type="Node" parent="Voice"]
+
+[node name="solets" type="AudioStreamPlayer" parent="Voice/first_question"]
+stream = ExtResource( 28 )
+
+[node name="heresyour" type="AudioStreamPlayer" parent="Voice/first_question"]
+stream = ExtResource( 67 )
+
+[node name="westart" type="AudioStreamPlayer" parent="Voice/first_question"]
+stream = ExtResource( 68 )
 
 [node name="hereiscandidate" type="AudioStreamPlayer" parent="Voice"]
 stream = ExtResource( 23 )
@@ -254,8 +294,18 @@ bus = "Voice"
 stream = ExtResource( 28 )
 bus = "Voice"
 
-[node name="see_answers" type="AudioStreamPlayer" parent="Voice"]
+[node name="see_answers" type="Node" parent="Voice"]
+
+[node name="see_answers" type="AudioStreamPlayer" parent="Voice/see_answers"]
 stream = ExtResource( 31 )
+bus = "Voice"
+
+[node name="see_answers2" type="AudioStreamPlayer" parent="Voice/see_answers"]
+stream = ExtResource( 62 )
+bus = "Voice"
+
+[node name="see_answers3" type="AudioStreamPlayer" parent="Voice/see_answers"]
+stream = ExtResource( 63 )
 bus = "Voice"
 
 [node name="theansweris" type="AudioStreamPlayer" parent="Voice"]
@@ -288,6 +338,10 @@ bus = "Voice"
 
 [node name="youknowthedeal" type="AudioStreamPlayer" parent="Voice"]
 stream = ExtResource( 35 )
+bus = "Voice"
+
+[node name="youdidit" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 69 )
 bus = "Voice"
 
 [node name="category_calls" type="Node" parent="Voice"]

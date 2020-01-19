@@ -136,5 +136,9 @@ var lines = {
 }
 
 func get_line(l):
-	var idx = data.attempt_numero % lines[l].size()
+	var idx
+	if l == "wrong":
+		idx = randi()%3
+	else:
+		idx = data.attempt_numero % lines[l].size()
 	return lines[l][idx]
