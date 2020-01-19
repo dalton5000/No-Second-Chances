@@ -64,7 +64,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 3.1, 3.45, 3.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 626, -298 ), Vector2( 626, 23.8985 ), Vector2( 626, 6 ) ]
+"values": [ Vector2( 626, -350 ), Vector2( 626, 23.8985 ), Vector2( 626, 6 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -580,9 +580,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 114.0
-margin_top = -598.0
+margin_top = -650.0
 margin_right = 506.0
-margin_bottom = -337.209
+margin_bottom = -339.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -591,7 +591,7 @@ __meta__ = {
 margin_left = 12.0
 margin_top = 12.0
 margin_right = 380.0
-margin_bottom = 248.791
+margin_bottom = 299.0
 
 [node name="Logo" type="Label" parent="GameLayer/HUD/GameOverPanel/VBoxContainer"]
 margin_right = 368.0
@@ -602,19 +602,21 @@ align = 1
 [node name="GameOverLabel" type="Label" parent="GameLayer/HUD/GameOverPanel/VBoxContainer"]
 margin_top = 39.0
 margin_right = 368.0
-margin_bottom = 175.0
+margin_bottom = 226.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "You reached question %s out of 10.
-Hey, at least you did better than %s!"
+Hey, at least you did better than %s!
+lalalalala
+asllsadlsad"
 autowrap = true
 
 [node name="MenuButton" type="Button" parent="GameLayer/HUD/GameOverPanel/VBoxContainer" groups=[
 "button",
 ]]
-margin_top = 179.0
+margin_top = 230.0
 margin_right = 368.0
-margin_bottom = 236.0
+margin_bottom = 287.0
 text = "Back to menu"
 
 [node name="TitleLayer" type="CanvasLayer" parent="."]

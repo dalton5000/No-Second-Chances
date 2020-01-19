@@ -1,6 +1,7 @@
 extends Node
 
 var attempt_numero = 0
+onready var game = get_node("/root/Game")
 
 var questions = {
 	"gaming" : [
@@ -100,7 +101,6 @@ var answers = {
 		["The best", "The most fun", "The most original", "No Second Chances!",3],
 	]
 }
-
 var lines = {
 	"banter": [
 		"That\'s right, we\'re bringing you exactly what daytime TV has needed for so long: another bloody game show.",
@@ -138,7 +138,8 @@ var lines = {
 func get_line(l):
 	var idx
 	if l == "see_answers":
-		idx = randi()%3
+		idx = game.current_question%3
 	else:
 		idx = data.attempt_numero % lines[l].size()
 	return lines[l][idx]
+

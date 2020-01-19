@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://autoload/Sounds.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/switch4.ogg" type="AudioStream" id=2]
@@ -69,6 +69,7 @@
 [ext_resource path="res://assets/vo/first_question2.ogg" type="AudioStream" id=67]
 [ext_resource path="res://assets/vo/first_question3.ogg" type="AudioStream" id=68]
 [ext_resource path="res://assets/vo/youdidit.ogg" type="AudioStream" id=69]
+[ext_resource path="res://assets/vo/interlude.ogg" type="AudioStream" id=70]
 
 [node name="Sounds" type="Node"]
 script = ExtResource( 1 )
@@ -95,9 +96,11 @@ stream = ExtResource( 30 )
 
 [node name="applause1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -4.0
 
 [node name="applause2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -3.0
 
 [node name="ohmygod" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
@@ -322,6 +325,10 @@ bus = "Voice"
 
 [node name="cantbesaid" type="AudioStreamPlayer" parent="Voice"]
 stream = ExtResource( 36 )
+bus = "Voice"
+
+[node name="interlude" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 70 )
 bus = "Voice"
 
 [node name="everyoneright" type="AudioStreamPlayer" parent="Voice"]

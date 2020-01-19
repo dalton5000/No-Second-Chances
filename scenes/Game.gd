@@ -5,7 +5,7 @@ signal speech_complete
 
 
 
-var current_question = 0
+var current_question = 8
 var given_answer = 0
 
 onready var answer_buttons = [
@@ -155,10 +155,16 @@ func start_intro():
 	Sounds.play_voice("opponents")
 	yield(Sounds,"voice_completed")
 
+	Sounds.play_voice("interlude")
+	say(data.get_line("interlude"),4.0)
+	yield(Sounds,"voice_completed")
+
+
 #	yield(self,"speech_complete")
 	for actor in [1,2,3,4]:
 		actors[actor].fall()
 		yield(get_tree().create_timer(1.0), "timeout")
+	yield(get_tree().create_timer(1.0), "timeout")
 #	say("Welcome %s, %s, %s and %s!" % player_names)
 #	yield(self,"speech_complete")
 
@@ -186,22 +192,26 @@ func start_intro():
 
 func start_validation():
 	Sounds.play_voice("see_answers")
-	say(data.get_line("see_answers"),4.0)
-	yield(Sounds,"voice_completed")
+	say(data.get_line("see_answers"),5.0)
+#	yield(Sounds,"voice_completed")
+	yield(self,"speech_complete")
 
 	yield(get_tree().create_timer(1.0), "timeout")
 
-	Sounds.play("reveal")
+#	Sounds.play("reveal")
 	player.show_player_answer(given_answer)
 	for i in [1,2,3,4]:
-		actors[i].show_answer(current_question)
+		if actors[i].alive:
+			actors[i].show_answer(current_question)
 	Sounds.play("drumroll")
-	say("And the correct answer is...", 4.0)
+	say("And the correct answer is...", 2.0)
 	Sounds.play_voice("theansweris")
-	yield(Sounds,"voice_completed")
+#	yield(Sounds,"voice_completed")
+	yield(get_tree().create_timer(3.0), "timeout")
+
 	Sounds.play("aah")
-	say(str(int(data.answers[active_category][current_question][4])+1) +" !!")
-#	yield(self,"speech_complete")
+	say(str(int(data.answers[active_category][current_question][4])+1) +" !!",3.0)
+	yield(self,"speech_complete")
 
 	if validate(given_answer):
 		Sounds.play("correct")
@@ -244,8 +254,8 @@ func start_validation():
 			Sounds.play("ohmygod")
 			yield(get_tree().create_timer(2.4),"timeout")
 
-		if current_question == 11:
-			Sounds.play("youdidit")
+		if current_question == 10:
+			Sounds.play_voice("youdidit")
 			say("You did it! That was the last question of the category. You're much smarter than you look!",4.0)
 			yield(self,"speech_complete")
 			say("So, there is no prize for budgetary reasons, but you can tell your friends about your success!")
@@ -405,11 +415,12 @@ func will_someone_die():
 
 func check_candidates():
 	for i in [1,2,3,4]:
-		if int(actors[i].answer_list[current_question]) == data.answers[active_category][current_question][4]:
-			actors[i].score += 1
-		else:
-			actors[i].anims.play("Smash")
-			yield(get_tree().create_timer(0.3),"timeout")
+		if actors[i].alive:
+			if int(actors[i].answer_list[current_question]) == data.answers[active_category][current_question][4]:
+				actors[i].score += 1
+			else:
+				actors[i].anims.play("Smash")
+				yield(get_tree().create_timer(0.3),"timeout")
 
 func _on_CharacterCreator_finished():
 	transition.play("FadeOut")

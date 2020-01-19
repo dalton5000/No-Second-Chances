@@ -23,7 +23,11 @@ func get_player(path):
 	if node is AudioStreamPlayer:
 		return node
 	elif node is Node:
-		var idx = data.attempt_numero % node.get_child_count()
+		var idx
+		if node.name == "see_answers":
+			idx = data.game.current_question%3
+		else:
+			idx = data.attempt_numero % node.get_child_count()
 		var player = node.get_child(idx)
 		return player
 
