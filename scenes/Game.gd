@@ -49,8 +49,8 @@ onready var gameover_label = $GameLayer/HUD/GameOverPanel/VBoxContainer/GameOver
 
 var gameover_text_better = "You reached question %s out of 10 in category %s.\nHey, at least you did better than %s!"
 var gameover_text_worst = "You reached question %s out of 10 in category %s.\nAll other candidates got further than you, how embarrassing!"
-var gameover_text_best = "You reached question %s out of 10 in category %s.\n You may be dead, but you did better than %s!"
-var gameover_text_equal = "You reached question %s out of 10 in category %s.\n You all died at the same question. Funny!"
+var gameover_text_best = "You reached question %s out of 10 in category %s.\nYou may be dead, but you did better than %s!"
+var gameover_text_equal = "You reached question %s out of 10 in category %s.\nYou all died at the same question. Funny!"
 
 var player_name = ""
 var player_names = []
@@ -137,11 +137,8 @@ func start_intro():
 	say(data.get_line("welcome"),8.0)
 	yield(Sounds,"voice_completed")
 	$GameLayer/Stage/Showmaster.get_node("BaseAnimations").play("Wave")
-
-#	say("The quizshow without mercy!\nLet's see who will be your opponents",3.5)
-#	say("The quizshow without mercy!\nLet's see who will be your opponents",3.5)
-	say("I'm your host: an embittered washing machine salesman whose agent convinced him this would be his big break.",8.0)
-	Sounds.play_voice("imyourhost")
+	say(data.get_line("banter"),8.0)
+	Sounds.play_voice("banter")
 	Sounds.play("applause2")
 	yield(Sounds,"voice_completed")
 
@@ -162,25 +159,34 @@ func start_intro():
 	for actor in [1,2,3,4]:
 		actors[actor].fall()
 		yield(get_tree().create_timer(1.0), "timeout")
-	say("Welcome %s, %s, %s and %s!" % player_names)
-	yield(self,"speech_complete")
+#	say("Welcome %s, %s, %s and %s!" % player_names)
+#	yield(self,"speech_complete")
 
 	candidates_wave()
 	Sounds.play("applause2")
-	Sounds.play_voice("start_quiz")
-	say("Here\'s your first question.\nPro Tip: Don\'t bottle it.'", 3.0)
+
+	say(data.get_line("candidate_banter"),8.0)
+	Sounds.play_voice("candidate_banter")
+
+	yield(Sounds,"voice_completed")
+
+#	say("Here\'s your first question.\nPro Tip: Don\'t bottle it.'", 3.0)
+
+	say(data.get_line("first_question"),8.0)
+	Sounds.play_voice("first_question")
+
 
 	yield(Sounds,"voice_completed")
 
 
-	yield(get_tree().create_timer(2.5),"timeout")
+	yield(get_tree().create_timer(1.2),"timeout")
 
 
 	change_state(STATES.QUESTION)
 
 func start_validation():
 	Sounds.play_voice("see_answers")
-	say("Let's see everybody's answers...",2.0)
+	say(data.get_line("see_answers"),4.0)
 	yield(Sounds,"voice_completed")
 
 	yield(get_tree().create_timer(1.0), "timeout")
@@ -226,20 +232,40 @@ func start_validation():
 		if not is_everyone_dead():
 			if will_someone_die():
 				say("That can't be said about everyone...")
+				Sounds.play_voice("cantbesaid")
+				yield(Sounds,"voice_completed")
 			else:
 				say("Everyone got this one right! What a surprise!")
+				Sounds.play_voice("everyoneright")
+				yield(Sounds,"voice_completed")
 
-			yield(self,"speech_complete")
 			check_candidates()
 			yield(get_tree().create_timer(0.4),"timeout")
 			Sounds.play("ohmygod")
 			say("RIP\nBut let's continue with the next question'")
 			yield(self,"speech_complete")
-		change_state(STATES.QUESTION)
+
+		if current_question == 11:
+			Sounds.play("youdidit")
+			say("You did it! That was the last question of the category. You're much smarter than you look!",4.0)
+			yield(self,"speech_complete")
+			say("So, there is no prize for budgetary reasons, but you can tell your friends about your success!")
+			yield(Sounds,"voice_completed")
+			start_game_won()
+		else:
+			change_state(STATES.QUESTION)
 	else:
 		Sounds.play("wrong")
 		yield(get_tree().create_timer(0.8),"timeout")
 		start_gameover()
+
+func start_game_won():
+	user_data.set_cat_score(active_category, 10)
+	WebHandler.upload_answers(active_category, answers_given[active_category])
+	gameover_label.text = "You have won category %s\n Congratulations, and thank you for playing :)" % [active_category.capitalize()]
+
+	question_anim.play("Fall")
+	candidates_wave()
 
 func start_gameover():
 	user_data.set_cat_score(active_category, current_question)

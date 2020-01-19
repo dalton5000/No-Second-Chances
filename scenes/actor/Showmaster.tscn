@@ -44,9 +44,6 @@ position = Vector2( 3, -49 )
 [node name="Sprite" parent="Body/Head" index="0"]
 frame = 15
 
-[node name="AnswerLabel" parent="Body" index="8"]
-modulate = Color( 1, 1, 1, 1 )
-
 [node name="ShowmasterAnim" type="AnimationPlayer" parent="." index="5"]
 playback_speed = 1.2
 anims/groove = SubResource( 1 )
