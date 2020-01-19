@@ -33,7 +33,7 @@ func body_pressed(val):
 		body_val += val
 
 	actor.body_frame = body_val
-	body_value_label.text = value_string % [str(body_val), str(13)]
+	body_value_label.text = value_string % [str(body_val), str(16)]
 
 func head_pressed(val):
 	if head_val+val > HEAD_MAX:
@@ -44,7 +44,7 @@ func head_pressed(val):
 		head_val += val
 
 	actor.head_frame = head_val
-	head_value_label.text = value_string % [str(head_val), str(15)]
+	head_value_label.text = value_string % [str(head_val), str(13)]
 
 func clean(string):
 	string = string.replace("Penis", "Funny")
