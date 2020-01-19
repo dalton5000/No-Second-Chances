@@ -3,6 +3,8 @@ class_name Game
 
 signal speech_complete
 
+
+
 var current_question = 0
 var given_answer = 0
 
@@ -132,7 +134,7 @@ func start_intro():
 
 
 	Sounds.play_voice("welcome")
-	say("Hello %s and welcome to \"No Second Chances\", the show where there are no stupid questions, just stupid panelists." %[player_name],8.0)
+	say(data.get_line("welcome"),8.0)
 	yield(Sounds,"voice_completed")
 	$GameLayer/Stage/Showmaster.get_node("BaseAnimations").play("Wave")
 
@@ -193,7 +195,7 @@ func start_validation():
 	yield(Sounds,"voice_completed")
 	Sounds.play("aah")
 	say(str(int(data.answers[active_category][current_question][4])+1) +" !!")
-	yield(self,"speech_complete")
+#	yield(self,"speech_complete")
 
 	if validate(given_answer):
 		Sounds.play("correct")
@@ -205,10 +207,23 @@ func start_validation():
 		question_anim.play("SlideOut")
 		current_question+=1
 		yield(question_anim,"animation_finished")
+
+		if current_question == 5:
+			Sounds.play_voice("halfway")
+			yield(Sounds,"voice_completed")
+			say("We are, as they say, halfway there.\nWoohoo, living on a prayer!")
+		if current_question == 10:
+			Sounds.play_voice("finalquestion")
+			say("You have reached the final question of this category! Savour the moment of fame while it lasts.")
+			yield(Sounds,"voice_completed")
+
+
+
+
 		reset_answers()
-		if is_everyone_dead():
-			say("Let's continue with the next question")
-		else:
+#		if is_everyone_dead():
+#			say("Let's continue with the next question")
+		if not is_everyone_dead():
 			if will_someone_die():
 				say("That can't be said about everyone...")
 			else:
@@ -219,7 +234,7 @@ func start_validation():
 			yield(get_tree().create_timer(0.4),"timeout")
 			Sounds.play("ohmygod")
 			say("RIP\nBut let's continue with the next question'")
-		yield(self,"speech_complete")
+			yield(self,"speech_complete")
 		change_state(STATES.QUESTION)
 	else:
 		Sounds.play("wrong")
@@ -301,13 +316,15 @@ func answer_pressed(idx):
 	change_state(STATES.VALIDATION)
 
 func disable_categories():
+	data.attempt_numero = 0
 	for category in ["gaming","godot","surprise"]:
 		print("loaded category score: " + category)
 		print(user_data.category_score)
 		print(user_data.category_score[category])
 		if user_data.category_score[category] != -1:
-			print(user_data.category_score[category])
+#			print(user_data.category_score[category])
 			print("closing")
+			data.attempt_numero += 1
 			cat2button[category].disabled=true
 			cat2button[category].text = "%s %s / 10" % [category.capitalize(), str(user_data.category_score[category])]
 
@@ -317,6 +334,8 @@ func disable_categories():
 			else:
 				cat2button[category].disabled=false
 			cat2button[category].text = category.capitalize()
+	print("Attempt numero: %s" % [str(data.attempt_numero)])
+#	data.attempt_numero = 8
 
 func candidates_wave():
 	for i in [1,2,3,4]:
@@ -429,12 +448,13 @@ func _on_Title_create_pressed():
 
 
 func _on_Title_category_selected(category):
-	active_category = category
-	transition.play("FadeOut")
-	yield(transition, "animation_finished")
-	$TitleLayer/Title.hide()
-	transition.play("FadeIn")
-	change_state(STATES.INTRO)
+	if not transition.is_playing():
+		active_category = category
+		transition.play("FadeOut")
+		yield(transition, "animation_finished")
+		$TitleLayer/Title.hide()
+		transition.play("FadeIn")
+		change_state(STATES.INTRO)
 
 
 func _on_Reset_pressed():

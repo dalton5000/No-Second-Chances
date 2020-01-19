@@ -1,5 +1,6 @@
 extends Node
 
+var attempt_numero = 0
 
 var questions = {
 	"gaming" : [
@@ -99,3 +100,14 @@ var answers = {
 		["The best", "The most fun", "The most original", "No Second Chances!",3],
 	]
 }
+
+var lines = {
+	"welcome": [
+		"Hello and welcome to \"No Second Chances\", the quizshow without mercy!",
+		"Hello and welcome to \"No Second Chances\", the show where there are no stupid questions, just stupid panelists."
+		]
+}
+
+func get_line(l):
+	var idx = data.attempt_numero % lines[l].size()
+	return lines[l][idx]

@@ -23,7 +23,8 @@ func get_player(path):
 	if node is AudioStreamPlayer:
 		return node
 	elif node is Node:
-		var player = node.get_child(randi() % node.get_child_count())
+		var idx = data.attempt_numero % node.get_child_count()
+		var player = node.get_child(idx)
 		return player
 
 func button_pressed():

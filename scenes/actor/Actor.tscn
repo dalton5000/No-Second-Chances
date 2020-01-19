@@ -10,15 +10,21 @@
 [ext_resource path="res://assets/sfx/47340__angel-perez-grandi__filth-squash.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/sfx/209771__johnnyfarmer__metal-hit-cartoon.wav" type="AudioStream" id=9]
 
-[sub_resource type="DynamicFont" id=1]
-size = 32
-outline_color = Color( 1, 0.12549, 0.337255, 1 )
+[sub_resource type="DynamicFont" id=12]
+size = 26
+outline_size = 2
+outline_color = Color( 0.0235294, 0.0313726, 0.25098, 1 )
+use_mipmaps = true
+use_filter = true
+extra_spacing_char = 5
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 96
+size = 72
 outline_size = 6
 outline_color = Color( 0.223529, 0.141176, 0.0901961, 1 )
+use_mipmaps = true
+use_filter = true
 font_data = ExtResource( 3 )
 
 [sub_resource type="AudioStreamRandomPitch" id=3]
@@ -240,7 +246,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=11]
-length = 2.0
+length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/AnswerLabel:visible")
 tracks/0/interp = 1
@@ -248,10 +254,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 3.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ false, true ]
+"values": [ false, true, false ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Body/AnswerLabel:modulate")
@@ -349,8 +355,8 @@ margin_top = 112.495
 margin_right = 128.202
 margin_bottom = 162.495
 rect_min_size = Vector2( 256, 0 )
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 1, 0.0705882, 0.341176, 1 )
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 1, 0.866667, 0, 1 )
 text = "NAME"
 align = 1
 __meta__ = {
@@ -359,14 +365,13 @@ __meta__ = {
 
 [node name="AnswerLabel" type="Label" parent="Body"]
 visible = false
-modulate = Color( 1, 1, 1, 0 )
 margin_left = -128.0
 margin_top = -296.0
 margin_right = 128.0
 margin_bottom = -150.0
 rect_min_size = Vector2( 256, 0 )
 custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 0.921569, 0, 1 )
 text = "1"
 align = 1
 __meta__ = {

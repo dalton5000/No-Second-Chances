@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://autoload/Sounds.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/switch4.ogg" type="AudioStream" id=2]
@@ -59,6 +59,7 @@
 [ext_resource path="res://assets/vo/surprise-7.ogg" type="AudioStream" id=57]
 [ext_resource path="res://assets/vo/surprise-2.ogg" type="AudioStream" id=58]
 [ext_resource path="res://assets/vo/surprise-6.ogg" type="AudioStream" id=59]
+[ext_resource path="res://assets/vo/welcome2.ogg" type="AudioStream" id=60]
 
 [node name="Sounds" type="Node"]
 script = ExtResource( 1 )
@@ -227,7 +228,13 @@ bus = "Voice"
 stream = ExtResource( 51 )
 bus = "Voice"
 
-[node name="welcome" type="AudioStreamPlayer" parent="Voice"]
+[node name="welcome" type="Node" parent="Voice"]
+
+[node name="welcome1" type="AudioStreamPlayer" parent="Voice/welcome"]
+stream = ExtResource( 60 )
+bus = "Voice"
+
+[node name="welcome2" type="AudioStreamPlayer" parent="Voice/welcome"]
 stream = ExtResource( 21 )
 bus = "Voice"
 
