@@ -177,12 +177,12 @@ func start_intro():
 	yield(Sounds,"voice_completed")
 
 #	say("Here\'s your first question.\nPro Tip: Don\'t bottle it.'", 3.0)
+	if current_question == 0:
+		say(data.get_line("first_question"),8.0)
+		Sounds.play_voice("first_question")
+		yield(Sounds,"voice_completed")
 
-	say(data.get_line("first_question"),8.0)
-	Sounds.play_voice("first_question")
 
-
-	yield(Sounds,"voice_completed")
 
 
 	yield(get_tree().create_timer(1.2),"timeout")

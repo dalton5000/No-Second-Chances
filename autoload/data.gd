@@ -30,7 +30,7 @@ var questions = {
 
 		"What continent are Godot creators Juan Linietsky and Ariel Manzur from?",
 		"Which of these is NOT a Node in the Godot engine?",
-		"What is the name of the game the Godot engine was originally written specifically for?",
+		"What copyright license is the Godot engine licenced under?",
 
 		"As of January 2020, how many people have contributed to the Godot source code?",
 	],
@@ -46,7 +46,7 @@ var questions = {
 
 		"In which month of the year was the first GWJ held?",
 		"Which of the following is NOT a rating category in GWJ?",
-		"The Wildling, the mascot of the GWJ, is a hybrid of which two animals?",
+		"How many games have been submitted to all Godot Wild Jams in total?",
 
 		"Which of the following games will definitely win GWJ17?"
 
@@ -81,7 +81,7 @@ var answers = {
 
 		["South America", "Europe", "North America", "Australia",2],
 		["VehicleWheel", "GridMap", "ParticleAttractor", "PinJoint2D",2],
-		["Zero", "One", "Two", "Three",3],
+		["MIT", "GNU", "CC BY NC", "The Unlicense",0],
 
 		["About 10", "About 100", "About 1.000", "About 10.000",2]
 	],
@@ -96,7 +96,7 @@ var answers = {
 
 		["Originality", "Theme", "Atmosphere", "Fun",2],
 		["September ", "Oktober", "November", "December",0],
-		["Peach", "Toad", "Daisy", "Koopa Troopa",2],
+		["129", "395", "650", "1017",1],
 
 		["The best", "The most fun", "The most original", "No Second Chances!",3],
 	]
