@@ -28,7 +28,7 @@ _global_script_class_icons={
 
 config/name="No Second Chances"
 run/main_scene="res://scenes/Game.tscn"
-config/icon="res://icon.png"
+config/icon="res://NoSecondChances.png"
 
 [autoload]
 
@@ -40,6 +40,13 @@ Sounds="*res://autoload/Sounds.tscn"
 [debug]
 
 gdscript/warnings/enable=false
+
+[importer_defaults]
+
+ogg_vorbis={
+"loop": false,
+"loop_offset": 0
+}
 
 [rendering]
 

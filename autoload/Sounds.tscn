@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://autoload/Sounds.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/switch4.ogg" type="AudioStream" id=2]
@@ -10,12 +10,43 @@
 [ext_resource path="res://assets/sfx/aah1.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/sfx/aah2.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/sfx/aah3.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/vo/gaming-1.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/vo/gaming-3.ogg" type="AudioStream" id=12]
+[ext_resource path="res://assets/vo/gaming-9.ogg" type="AudioStream" id=13]
+[ext_resource path="res://assets/vo/gaming-7.ogg" type="AudioStream" id=14]
+[ext_resource path="res://assets/vo/gaming-6.ogg" type="AudioStream" id=15]
+[ext_resource path="res://assets/vo/gaming-4.ogg" type="AudioStream" id=16]
+[ext_resource path="res://assets/vo/gaming-5.ogg" type="AudioStream" id=17]
+[ext_resource path="res://assets/vo/gaming-2.ogg" type="AudioStream" id=18]
+[ext_resource path="res://assets/vo/gaming-8.ogg" type="AudioStream" id=19]
+[ext_resource path="res://assets/vo/gaming-10.ogg" type="AudioStream" id=20]
+[ext_resource path="res://assets/vo/welcome.ogg" type="AudioStream" id=21]
+[ext_resource path="res://assets/vo/imyourhost.ogg" type="AudioStream" id=22]
+[ext_resource path="res://assets/vo/hereiscandidate.ogg" type="AudioStream" id=23]
+[ext_resource path="res://assets/vo/cat_gaming.ogg" type="AudioStream" id=24]
+[ext_resource path="res://assets/vo/opponents.ogg" type="AudioStream" id=25]
+[ext_resource path="res://assets/vo/cat_surprise.ogg" type="AudioStream" id=26]
+[ext_resource path="res://assets/vo/cat_godot.ogg" type="AudioStream" id=27]
+[ext_resource path="res://assets/vo/first_question.ogg" type="AudioStream" id=28]
+[ext_resource path="res://assets/sfx/correct.ogg" type="AudioStream" id=29]
+[ext_resource path="res://assets/sfx/false.ogg" type="AudioStream" id=30]
+[ext_resource path="res://assets/vo/see_answers.ogg" type="AudioStream" id=31]
+[ext_resource path="res://assets/vo/theansweris.ogg" type="AudioStream" id=32]
+[ext_resource path="res://assets/vo/youarecorrect.ogg" type="AudioStream" id=33]
+[ext_resource path="res://assets/vo/youarewrong.ogg" type="AudioStream" id=34]
+[ext_resource path="res://assets/vo/youknowthedeal.ogg" type="AudioStream" id=35]
 
 [node name="Sounds" type="Node"]
 script = ExtResource( 1 )
 
 [node name="click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+
+[node name="correct" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 29 )
+
+[node name="wrong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 30 )
 
 [node name="applause1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
@@ -31,6 +62,7 @@ stream = ExtResource( 6 )
 
 [node name="reveal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+volume_db = -12.0
 
 [node name="aah1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
@@ -40,3 +72,185 @@ stream = ExtResource( 9 )
 
 [node name="aah3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
+
+[node name="Voice" type="Node" parent="."]
+
+[node name="gaming" type="Node" parent="Voice"]
+
+[node name="q1" type="AudioStreamPlayer" parent="Voice/gaming"]
+stream = ExtResource( 11 )
+bus = "Voice"
+
+[node name="q2" type="AudioStreamPlayer" parent="Voice/gaming"]
+stream = ExtResource( 18 )
+bus = "Voice"
+
+[node name="q3" type="AudioStreamPlayer" parent="Voice/gaming"]
+stream = ExtResource( 12 )
+bus = "Voice"
+
+[node name="q4" type="AudioStreamPlayer" parent="Voice/gaming"]
+stream = ExtResource( 16 )
+bus = "Voice"
+
+[node name="q5" type="AudioStreamPlayer" parent="Voice/gaming"]
+stream = ExtResource( 17 )
+bus = "Voice"
+
+[node name="q6" type="AudioStreamPlayer" parent="Voice/gaming"]
+stream = ExtResource( 15 )
+bus = "Voice"
+
+[node name="q7" type="AudioStreamPlayer" parent="Voice/gaming"]
+stream = ExtResource( 14 )
+bus = "Voice"
+
+[node name="q8" type="AudioStreamPlayer" parent="Voice/gaming"]
+stream = ExtResource( 19 )
+bus = "Voice"
+
+[node name="q9" type="AudioStreamPlayer" parent="Voice/gaming"]
+stream = ExtResource( 13 )
+bus = "Voice"
+
+[node name="q10" type="AudioStreamPlayer" parent="Voice/gaming"]
+stream = ExtResource( 20 )
+bus = "Voice"
+
+[node name="godot" type="Node" parent="Voice"]
+
+[node name="q1" type="AudioStreamPlayer" parent="Voice/godot"]
+stream = ExtResource( 11 )
+bus = "Voice"
+
+[node name="q2" type="AudioStreamPlayer" parent="Voice/godot"]
+stream = ExtResource( 18 )
+bus = "Voice"
+
+[node name="q3" type="AudioStreamPlayer" parent="Voice/godot"]
+stream = ExtResource( 12 )
+bus = "Voice"
+
+[node name="q4" type="AudioStreamPlayer" parent="Voice/godot"]
+stream = ExtResource( 16 )
+bus = "Voice"
+
+[node name="q5" type="AudioStreamPlayer" parent="Voice/godot"]
+stream = ExtResource( 17 )
+bus = "Voice"
+
+[node name="q6" type="AudioStreamPlayer" parent="Voice/godot"]
+stream = ExtResource( 15 )
+bus = "Voice"
+
+[node name="q7" type="AudioStreamPlayer" parent="Voice/godot"]
+stream = ExtResource( 14 )
+bus = "Voice"
+
+[node name="q8" type="AudioStreamPlayer" parent="Voice/godot"]
+stream = ExtResource( 19 )
+bus = "Voice"
+
+[node name="q9" type="AudioStreamPlayer" parent="Voice/godot"]
+stream = ExtResource( 13 )
+bus = "Voice"
+
+[node name="q10" type="AudioStreamPlayer" parent="Voice/godot"]
+stream = ExtResource( 20 )
+bus = "Voice"
+
+[node name="surprise" type="Node" parent="Voice"]
+
+[node name="q1" type="AudioStreamPlayer" parent="Voice/surprise"]
+stream = ExtResource( 11 )
+bus = "Voice"
+
+[node name="q2" type="AudioStreamPlayer" parent="Voice/surprise"]
+stream = ExtResource( 18 )
+bus = "Voice"
+
+[node name="q3" type="AudioStreamPlayer" parent="Voice/surprise"]
+stream = ExtResource( 12 )
+bus = "Voice"
+
+[node name="q4" type="AudioStreamPlayer" parent="Voice/surprise"]
+stream = ExtResource( 16 )
+bus = "Voice"
+
+[node name="q5" type="AudioStreamPlayer" parent="Voice/surprise"]
+stream = ExtResource( 17 )
+bus = "Voice"
+
+[node name="q6" type="AudioStreamPlayer" parent="Voice/surprise"]
+stream = ExtResource( 15 )
+bus = "Voice"
+
+[node name="q7" type="AudioStreamPlayer" parent="Voice/surprise"]
+stream = ExtResource( 14 )
+bus = "Voice"
+
+[node name="q8" type="AudioStreamPlayer" parent="Voice/surprise"]
+stream = ExtResource( 19 )
+bus = "Voice"
+
+[node name="q9" type="AudioStreamPlayer" parent="Voice/surprise"]
+stream = ExtResource( 13 )
+bus = "Voice"
+
+[node name="q10" type="AudioStreamPlayer" parent="Voice/surprise"]
+stream = ExtResource( 20 )
+bus = "Voice"
+
+[node name="welcome" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 21 )
+bus = "Voice"
+
+[node name="imyourhost" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 22 )
+bus = "Voice"
+
+[node name="hereiscandidate" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 23 )
+bus = "Voice"
+
+[node name="opponents" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 25 )
+bus = "Voice"
+
+[node name="start_quiz" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 28 )
+bus = "Voice"
+
+[node name="see_answers" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 31 )
+bus = "Voice"
+
+[node name="theansweris" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 32 )
+bus = "Voice"
+
+[node name="youarecorrect" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 33 )
+bus = "Voice"
+
+[node name="youarewrong" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 34 )
+bus = "Voice"
+
+[node name="youknowthedeal" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 35 )
+bus = "Voice"
+
+[node name="category_calls" type="Node" parent="Voice"]
+
+[node name="gaming" type="AudioStreamPlayer" parent="Voice/category_calls"]
+stream = ExtResource( 24 )
+bus = "Voice"
+
+[node name="godot" type="AudioStreamPlayer" parent="Voice/category_calls"]
+stream = ExtResource( 27 )
+bus = "Voice"
+
+[node name="surprise" type="AudioStreamPlayer" parent="Voice/category_calls"]
+stream = ExtResource( 26 )
+bus = "Voice"

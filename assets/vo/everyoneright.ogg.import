@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/everyoneright.ogg-b0ac1eddc214ae6c08e9eba0eabed96b.oggstr"
+
+[deps]
+
+source_file="res://assets/vo/everyoneright.ogg"
+dest_files=[ "res://.import/everyoneright.ogg-b0ac1eddc214ae6c08e9eba0eabed96b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,5 +1,6 @@
 extends Node
 
+signal voice_completed
 
 func play(sound):
 	if sound == "aah":
@@ -8,6 +9,18 @@ func play(sound):
 	else:
 		get_node(sound).play()
 
+func play_question(cat, idx):
+	var player = get_node("Voice/"+cat).get_child(idx)
+	player.play()
+	yield(player,"finished")
+	emit_signal("voice_completed")
+
+
+func play_voice(line):
+	var player = get_node("Voice/" + line)
+	player.play()
+	yield(player,"finished")
+	emit_signal("voice_completed")
 
 func button_pressed():
 	$click.play()

@@ -21,13 +21,13 @@ outline_size = 6
 outline_color = Color( 0.223529, 0.141176, 0.0901961, 1 )
 font_data = ExtResource( 3 )
 
-[sub_resource type="AudioStreamRandomPitch" id=10]
+[sub_resource type="AudioStreamRandomPitch" id=3]
 audio_stream = ExtResource( 7 )
 
-[sub_resource type="AudioStreamRandomPitch" id=11]
+[sub_resource type="AudioStreamRandomPitch" id=4]
 audio_stream = ExtResource( 6 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=5]
 length = 1.2
 step = 0.05
 tracks/0/type = "value"
@@ -76,7 +76,7 @@ tracks/3/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": SubResource( 10 )
+"stream": SubResource( 3 )
 } ],
 "times": PoolRealArray( 0.55 )
 }
@@ -90,24 +90,23 @@ tracks/4/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": SubResource( 11 )
+"stream": SubResource( 4 )
 } ],
 "times": PoolRealArray( 0.7 )
 }
 
-[sub_resource type="AudioStreamRandomPitch" id=7]
+[sub_resource type="AudioStreamRandomPitch" id=6]
 audio_stream = ExtResource( 8 )
 
-[sub_resource type="AudioStreamRandomPitch" id=8]
+[sub_resource type="AudioStreamRandomPitch" id=7]
 audio_stream = ExtResource( 9 )
 random_pitch = 1.2
 
-[sub_resource type="AudioStreamRandomPitch" id=9]
+[sub_resource type="AudioStreamRandomPitch" id=8]
 audio_stream = ExtResource( 7 )
 random_pitch = 1.0
 
-[sub_resource type="Animation" id=4]
-resource_name = "Smash"
+[sub_resource type="Animation" id=9]
 length = 2.0
 step = 0.025
 tracks/0/type = "value"
@@ -180,7 +179,7 @@ tracks/5/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": SubResource( 7 )
+"stream": SubResource( 6 )
 } ],
 "times": PoolRealArray( 0.325 )
 }
@@ -194,7 +193,7 @@ tracks/6/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": SubResource( 8 )
+"stream": SubResource( 7 )
 } ],
 "times": PoolRealArray( 0.475 )
 }
@@ -208,7 +207,7 @@ tracks/7/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": SubResource( 9 )
+"stream": SubResource( 8 )
 } ],
 "times": PoolRealArray( 0.125 )
 }
@@ -225,7 +224,7 @@ tracks/8/keys = {
 "values": [ Vector2( 0, -1080 ), Vector2( 0, 40 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=10]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/ArmRight:rotation_degrees")
@@ -240,8 +239,7 @@ tracks/0/keys = {
 "values": [ -35.0, -151.977, -132.481, -151.977, -132.481, -35.0 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "Reveal"
+[sub_resource type="Animation" id=11]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body/AnswerLabel:visible")
@@ -376,9 +374,9 @@ __meta__ = {
 }
 
 [node name="BaseAnimations" type="AnimationPlayer" parent="."]
-anims/Fall = SubResource( 3 )
-anims/Smash = SubResource( 4 )
-anims/Wave = SubResource( 5 )
+anims/Fall = SubResource( 5 )
+anims/Smash = SubResource( 9 )
+anims/Wave = SubResource( 10 )
 
 [node name="Blood" type="Sprite" parent="."]
 visible = false
@@ -392,19 +390,19 @@ position = Vector2( 0, -993.846 )
 texture = ExtResource( 5 )
 
 [node name="AnswerAnim" type="AnimationPlayer" parent="."]
-anims/Reveal = SubResource( 6 )
+anims/Reveal = SubResource( 11 )
 
 [node name="Squash" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource( 7 )
+stream = SubResource( 6 )
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource( 8 )
+stream = SubResource( 7 )
 volume_db = -8.0
 
 [node name="Hit2" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource( 11 )
+stream = SubResource( 4 )
 pitch_scale = 0.6
 
 [node name="Woosh" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource( 9 )
+stream = SubResource( 8 )
 pitch_scale = 1.5

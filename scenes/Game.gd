@@ -97,7 +97,6 @@ func spawn_actors():
 		actor.show_name(true)
 		actor.alive=true
 		actor.score=0
-	player.fall()
 
 func validate(answer):
 	if data.answers[active_category][current_question][4] == answer:
@@ -110,6 +109,7 @@ func load_next_question():
 	for i in 4:
 		answer_buttons[i].text = str(i+1) + ") " + data.answers[active_category][current_question][i]
 	$GameLayer/HUD/QuestionAnim.play("SlideIn")
+	Sounds.play_question(active_category, current_question)
 	yield($GameLayer/HUD/QuestionAnim,"animation_finished")
 	$GameLayer/HUD/QuestionAnim.play("ShowQuestion")
 
@@ -120,51 +120,87 @@ func load_menu():
 
 func start_intro():
 	load_candidate_data()
-	spawn_actors()
 	player.set_name_and_looks(user_data.player_name,user_data.body,user_data.head)
 	player_name = player.player_name
 	$CreatorLayer/CharacterCreator.hide()
-	spawn_actors()
 	$GameLayer/Stage.show()
 	$GameLayer/HUD.show()
 	$GameLayer/HUD/QuestionPanel.rect_position.x = -1000
-	say("Hello %s and Welcome to\n\"No Second Chances\"!" %[player_name],4.0)
+	spawn_actors()
+
+	yield(get_tree().create_timer(2.5),"timeout")
+
+
+	Sounds.play_voice("welcome")
+	say("Hello %s and welcome to \"No Second Chances\", the show where there are no stupid questions, just stupid panelists." %[player_name],8.0)
+	yield(Sounds,"voice_completed")
 	$GameLayer/Stage/Showmaster.get_node("BaseAnimations").play("Wave")
-	yield(self,"speech_complete")
+
+#	say("The quizshow without mercy!\nLet's see who will be your opponents",3.5)
+#	say("The quizshow without mercy!\nLet's see who will be your opponents",3.5)
+	say("I'm your host: an embittered washing machine salesman whose agent convinced him this would be his big break.",8.0)
+	Sounds.play_voice("imyourhost")
+	Sounds.play("applause2")
+	yield(Sounds,"voice_completed")
+
+	say("Let\'s say hello to today\'s contender! I would tell you who they are, but they would appear to have put their namebadge on upside down.", 8.0)
+	Sounds.play_voice("hereiscandidate")
+	player.fall()
+	yield(Sounds,"voice_completed")
 	actors[0].get_node("BaseAnimations").play("Wave")
 	Sounds.play("applause1")
-	say("The quizshow without mercy!\nLet's see who will be your opponents",3.5)
-	yield(self,"speech_complete")
+	say("You have chosen the category %s. Very well! Let’s see who will be your opponents." % [active_category], 6.0)
+	Sounds.play_voice("category_calls/" + active_category)
+	yield(Sounds,"voice_completed")
+
+	Sounds.play_voice("opponents")
+	yield(Sounds,"voice_completed")
+
+#	yield(self,"speech_complete")
 	for actor in [1,2,3,4]:
 		actors[actor].fall()
 		yield(get_tree().create_timer(1.0), "timeout")
 	say("Welcome %s, %s, %s and %s!" % player_names)
 	yield(self,"speech_complete")
+
 	candidates_wave()
 	Sounds.play("applause2")
-#	say("Here are the Rules:")
-	say("So let's get started\nwith question number one!", 2.0)
-	yield(self,"speech_complete")
+	Sounds.play_voice("start_quiz")
+	say("Here\'s your first question.\nPro Tip: Don\'t bottle it.'", 3.0)
+
+	yield(Sounds,"voice_completed")
+
+
+	yield(get_tree().create_timer(2.5),"timeout")
+
+
 	change_state(STATES.QUESTION)
 
 func start_validation():
+	Sounds.play_voice("see_answers")
 	say("Let's see everybodies answers...",2.0)
-	yield(get_tree().create_timer(2.0), "timeout")
+	yield(Sounds,"voice_completed")
+
+	yield(get_tree().create_timer(1.0), "timeout")
+
 	Sounds.play("reveal")
 	player.show_player_answer(given_answer)
 	for i in [1,2,3,4]:
 		actors[i].show_answer(current_question)
-	yield(self,"speech_complete")
 	Sounds.play("drumroll")
 	say("And the correct answer is...", 4.0)
-	yield(self,"speech_complete")
+	Sounds.play_voice("theansweris")
+	yield(Sounds,"voice_completed")
 	Sounds.play("aah")
 	say(str(int(data.answers[active_category][current_question][4])+1) +" !!")
 	yield(self,"speech_complete")
 
 	if validate(given_answer):
+		Sounds.play("correct")
+		yield(get_tree().create_timer(0.6), "timeout")
+		Sounds.play_voice("youarecorrect")
 		say("You are correct!")
-		yield(self,"speech_complete")
+		yield(Sounds,"voice_completed")
 		Sounds.play("applause1")
 		question_anim.play("SlideOut")
 		current_question+=1
@@ -173,7 +209,7 @@ func start_validation():
 		if is_everyone_dead():
 			say("Let's continue with the next question")
 		else:
-			if will_some_die():
+			if will_someone_die():
 				say("That can't be said about everyone...")
 			else:
 				say("Everyone got this one right! What a surprise!")
@@ -186,14 +222,22 @@ func start_validation():
 		yield(self,"speech_complete")
 		change_state(STATES.QUESTION)
 	else:
+		Sounds.play("wrong")
+		yield(get_tree().create_timer(0.8),"timeout")
 		start_gameover()
 
 func start_gameover():
 	user_data.set_cat_score(active_category, current_question)
 	WebHandler.upload_answers(active_category, answers_given[active_category])
 	gameover_label.text = create_gameover_text()
-	say("Oh no! Your answer was wrong.\nYou know the deal...\nNo second Chances!\nBut thanks for participating!")
-	yield(self,"speech_complete")
+
+	Sounds.play_voice("youarewrong")
+	say("Oh no! Your answer was wrong.\nYou know the deal...\nNo second Chances!\nBut thanks for participating!", 8.0)
+	yield(Sounds,"voice_completed")
+
+	Sounds.play_voice("youknowthedeal")
+	yield(Sounds,"voice_completed")
+#	yield(self,"speech_complete")
 	check_candidates()
 	question_anim.play("Fall")
 	yield(get_tree().create_timer(1.0),"timeout")
@@ -307,7 +351,7 @@ func is_everyone_dead():
 	return all_dead
 
 
-func will_some_die():
+func will_someone_die():
 	var will_die = false
 	for i in [1,2,3,4]:
 		if actors[i].alive:
@@ -401,9 +445,10 @@ func _on_Reset_pressed():
 func _on_MenuButton_pressed():
 	transition.play("FadeOut")
 	yield(transition, "animation_finished")
-	$TitleLayer/Title.hide()
-	change_state(STATES.MENU)
-	transition.play("FadeIn")
+	get_tree().reload_current_scene()
+#	$TitleLayer/Title.hide()
+#	change_state(STATES.MENU)
+#	transition.play("FadeIn")
 
 func on_connection_ok():
 	$TitleLayer/Title/ConnectionPanel/Label.text = "Loading Lobbies..."
