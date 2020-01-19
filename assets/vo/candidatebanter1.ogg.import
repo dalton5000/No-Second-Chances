@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/candidatebanter1.ogg-a12832dfacfbd3b3bb28462ba8c1494a.oggstr"
+
+[deps]
+
+source_file="res://assets/vo/candidatebanter1.ogg"
+dest_files=[ "res://.import/candidatebanter1.ogg-a12832dfacfbd3b3bb28462ba8c1494a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

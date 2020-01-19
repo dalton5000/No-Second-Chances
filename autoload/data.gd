@@ -75,7 +75,7 @@ var answers = {
 
 		["C#", "Java", "C++", "Python",2],
 #		["2017", "2007", "2010", "2014",3],
-		["Godot Engine", "Game Maker", "Source Engine", "Creation Engine",3],
+		["Godot Engine", "Game Maker", "Source Engine", "Creation Engine",0],
 		["Arthur Miller", "Samuel Beckett", "Oscar Wilde", "Ariel Manzur",1],
 
 		["South America", "Europe", "North America", "Australia",2],
@@ -102,6 +102,33 @@ var answers = {
 }
 
 var lines = {
+	"banter": [
+		"That\'s right, we\'re bringing you exactly what daytime TV has needed for so long: another bloody game show.",
+		"I\'m your host: an embittered washing machine salesman whose agent convinced him this would be his big break."
+	],
+	"candidate_banter": [
+		"Behold: an assort ment of people who didn\'t need to be anywhere else at 10 o\' clock on a Monday morning.",
+		"Ah yes, the unmistakable signs of top tier university graduates. The country\'s finest minds on subjects ranging all the way from media studies to mouthbreathing.",
+		"Oh. I\'m very sorry, there's clearly been a mistake. This is a quiz show, not Meet the Family with Mr. Baldrick."
+	],
+	"interlude": [
+		"No sense wasting time. Let’s get on with it."
+	],
+	"first_question": [
+		"So let’s get started with our first question!",
+		"Here’s your first question. Protip: don’t bottle it.",
+		"We start as we mean to go on, with a question whose answer should be obvious to all except those living under particularly large rocks."
+	],
+	"see_answers": [
+		"Alright, let’s see everyone's answers.",
+		"Let’s see what our prestigious players came up with.",
+		"First of all, thank you to whoever submitted their answer in crayon. And for the accompanying image, which I’m afraid we can’t show on air"
+	],
+	"wrong": [
+		"Oh no! Your answer was wrong.",
+		"Oh, you were this close, which incidentally, is about thiiis far.",
+		"And with that, the fate of the hapless contender is sealed. By which I mean you are wrong."
+	],
 	"welcome": [
 		"Hello and welcome to \"No Second Chances\", the quizshow without mercy!",
 		"Hello and welcome to \"No Second Chances\", the show where there are no stupid questions, just stupid panelists."
