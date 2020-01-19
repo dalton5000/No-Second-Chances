@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://autoload/Sounds.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/switch4.ogg" type="AudioStream" id=2]
@@ -35,9 +35,44 @@
 [ext_resource path="res://assets/vo/youarecorrect.ogg" type="AudioStream" id=33]
 [ext_resource path="res://assets/vo/youarewrong.ogg" type="AudioStream" id=34]
 [ext_resource path="res://assets/vo/youknowthedeal.ogg" type="AudioStream" id=35]
+[ext_resource path="res://assets/vo/cantbesaid.ogg" type="AudioStream" id=36]
+[ext_resource path="res://assets/vo/everyoneright.ogg" type="AudioStream" id=37]
+[ext_resource path="res://assets/vo/halfway.ogg" type="AudioStream" id=38]
+[ext_resource path="res://assets/vo/final_question.ogg" type="AudioStream" id=39]
+[ext_resource path="res://assets/vo/godot-4.ogg" type="AudioStream" id=40]
+[ext_resource path="res://assets/vo/godot-5.ogg" type="AudioStream" id=41]
+[ext_resource path="res://assets/vo/godot-10.ogg" type="AudioStream" id=42]
+[ext_resource path="res://assets/vo/godot-3.ogg" type="AudioStream" id=43]
+[ext_resource path="res://assets/vo/godot-1.ogg" type="AudioStream" id=44]
+[ext_resource path="res://assets/vo/godot-2.ogg" type="AudioStream" id=45]
+[ext_resource path="res://assets/vo/godot-7.ogg" type="AudioStream" id=46]
+[ext_resource path="res://assets/vo/surprise-4.ogg" type="AudioStream" id=47]
+[ext_resource path="res://assets/vo/surprise-1.ogg" type="AudioStream" id=48]
+[ext_resource path="res://assets/vo/surprise-9.ogg" type="AudioStream" id=49]
+[ext_resource path="res://assets/vo/godot-8.ogg" type="AudioStream" id=50]
+[ext_resource path="res://assets/vo/surprise-10.ogg" type="AudioStream" id=51]
+[ext_resource path="res://assets/vo/godot-9.ogg" type="AudioStream" id=52]
+[ext_resource path="res://assets/vo/godot-6.ogg" type="AudioStream" id=53]
+[ext_resource path="res://assets/vo/surprise-3.ogg" type="AudioStream" id=54]
+[ext_resource path="res://assets/vo/surprise-5.ogg" type="AudioStream" id=55]
+[ext_resource path="res://assets/vo/surprise-8.ogg" type="AudioStream" id=56]
+[ext_resource path="res://assets/vo/surprise-7.ogg" type="AudioStream" id=57]
+[ext_resource path="res://assets/vo/surprise-2.ogg" type="AudioStream" id=58]
+[ext_resource path="res://assets/vo/surprise-6.ogg" type="AudioStream" id=59]
 
 [node name="Sounds" type="Node"]
 script = ExtResource( 1 )
+
+[node name="aah" type="Node" parent="."]
+
+[node name="aah1" type="AudioStreamPlayer" parent="aah"]
+stream = ExtResource( 8 )
+
+[node name="aah2" type="AudioStreamPlayer" parent="aah"]
+stream = ExtResource( 9 )
+
+[node name="aah3" type="AudioStreamPlayer" parent="aah"]
+stream = ExtResource( 10 )
 
 [node name="click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
@@ -63,15 +98,6 @@ stream = ExtResource( 6 )
 [node name="reveal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -12.0
-
-[node name="aah1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
-
-[node name="aah2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
-
-[node name="aah3" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
 
 [node name="Voice" type="Node" parent="."]
 
@@ -120,85 +146,85 @@ bus = "Voice"
 [node name="godot" type="Node" parent="Voice"]
 
 [node name="q1" type="AudioStreamPlayer" parent="Voice/godot"]
-stream = ExtResource( 11 )
+stream = ExtResource( 45 )
 bus = "Voice"
 
 [node name="q2" type="AudioStreamPlayer" parent="Voice/godot"]
-stream = ExtResource( 18 )
+stream = ExtResource( 44 )
 bus = "Voice"
 
 [node name="q3" type="AudioStreamPlayer" parent="Voice/godot"]
-stream = ExtResource( 12 )
+stream = ExtResource( 43 )
 bus = "Voice"
 
 [node name="q4" type="AudioStreamPlayer" parent="Voice/godot"]
-stream = ExtResource( 16 )
+stream = ExtResource( 40 )
 bus = "Voice"
 
 [node name="q5" type="AudioStreamPlayer" parent="Voice/godot"]
-stream = ExtResource( 17 )
+stream = ExtResource( 41 )
 bus = "Voice"
 
 [node name="q6" type="AudioStreamPlayer" parent="Voice/godot"]
-stream = ExtResource( 15 )
+stream = ExtResource( 53 )
 bus = "Voice"
 
 [node name="q7" type="AudioStreamPlayer" parent="Voice/godot"]
-stream = ExtResource( 14 )
+stream = ExtResource( 46 )
 bus = "Voice"
 
 [node name="q8" type="AudioStreamPlayer" parent="Voice/godot"]
-stream = ExtResource( 19 )
+stream = ExtResource( 50 )
 bus = "Voice"
 
 [node name="q9" type="AudioStreamPlayer" parent="Voice/godot"]
-stream = ExtResource( 13 )
+stream = ExtResource( 52 )
 bus = "Voice"
 
 [node name="q10" type="AudioStreamPlayer" parent="Voice/godot"]
-stream = ExtResource( 20 )
+stream = ExtResource( 42 )
 bus = "Voice"
 
 [node name="surprise" type="Node" parent="Voice"]
 
 [node name="q1" type="AudioStreamPlayer" parent="Voice/surprise"]
-stream = ExtResource( 11 )
+stream = ExtResource( 48 )
 bus = "Voice"
 
 [node name="q2" type="AudioStreamPlayer" parent="Voice/surprise"]
-stream = ExtResource( 18 )
+stream = ExtResource( 58 )
 bus = "Voice"
 
 [node name="q3" type="AudioStreamPlayer" parent="Voice/surprise"]
-stream = ExtResource( 12 )
+stream = ExtResource( 54 )
 bus = "Voice"
 
 [node name="q4" type="AudioStreamPlayer" parent="Voice/surprise"]
-stream = ExtResource( 16 )
+stream = ExtResource( 47 )
 bus = "Voice"
 
 [node name="q5" type="AudioStreamPlayer" parent="Voice/surprise"]
-stream = ExtResource( 17 )
+stream = ExtResource( 55 )
 bus = "Voice"
 
 [node name="q6" type="AudioStreamPlayer" parent="Voice/surprise"]
-stream = ExtResource( 15 )
+stream = ExtResource( 59 )
 bus = "Voice"
 
 [node name="q7" type="AudioStreamPlayer" parent="Voice/surprise"]
-stream = ExtResource( 14 )
+stream = ExtResource( 57 )
 bus = "Voice"
 
 [node name="q8" type="AudioStreamPlayer" parent="Voice/surprise"]
-stream = ExtResource( 19 )
+stream = ExtResource( 56 )
 bus = "Voice"
 
 [node name="q9" type="AudioStreamPlayer" parent="Voice/surprise"]
-stream = ExtResource( 13 )
+stream = ExtResource( 49 )
 bus = "Voice"
 
 [node name="q10" type="AudioStreamPlayer" parent="Voice/surprise"]
-stream = ExtResource( 20 )
+stream = ExtResource( 51 )
 bus = "Voice"
 
 [node name="welcome" type="AudioStreamPlayer" parent="Voice"]
@@ -235,6 +261,22 @@ bus = "Voice"
 
 [node name="youarewrong" type="AudioStreamPlayer" parent="Voice"]
 stream = ExtResource( 34 )
+bus = "Voice"
+
+[node name="cantbesaid" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 36 )
+bus = "Voice"
+
+[node name="everyoneright" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 37 )
+bus = "Voice"
+
+[node name="halfway" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 38 )
+bus = "Voice"
+
+[node name="finalquestion" type="AudioStreamPlayer" parent="Voice"]
+stream = ExtResource( 39 )
 bus = "Voice"
 
 [node name="youknowthedeal" type="AudioStreamPlayer" parent="Voice"]

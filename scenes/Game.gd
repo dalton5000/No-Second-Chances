@@ -178,7 +178,7 @@ func start_intro():
 
 func start_validation():
 	Sounds.play_voice("see_answers")
-	say("Let's see everybodies answers...",2.0)
+	say("Let's see everybody's answers...",2.0)
 	yield(Sounds,"voice_completed")
 
 	yield(get_tree().create_timer(1.0), "timeout")

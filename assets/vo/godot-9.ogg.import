@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/godot-9.ogg-3b6d9129b5e8a5a92bfee989ac2e1b1f.oggstr"
+
+[deps]
+
+source_file="res://assets/vo/godot-9.ogg"
+dest_files=[ "res://.import/godot-9.ogg-3b6d9129b5e8a5a92bfee989ac2e1b1f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
