@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/q2-7.ogg-89f0b3cd54ff226abe63dd474a2d51c6.oggstr"
+
+[deps]
+
+source_file="res://assets/vo/q2-7.ogg"
+dest_files=[ "res://.import/q2-7.ogg-89f0b3cd54ff226abe63dd474a2d51c6.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
