@@ -278,10 +278,13 @@ func start_validation():
 			Sounds.play("fanfare")
 			Sounds.play_voice("youdidit")
 			say("You did it! That was the last question of the category. You're much smarter than you look!",6.0)
-			yield(self,"speech_complete")
+
+			Sounds.play_voice("youdidit")
+			yield(Sounds,"voice_completed")
 			say("So, there is no prize for budgetary reasons, but you can tell your friends about your success!",6.0)
 #			yield(Sounds,"voice_completed")
-			yield(self,"speech_complete")
+			Sounds.play_voice("no prize")
+			yield(Sounds,"voice_completed")
 			start_game_won()
 		else:
 			change_state(STATES.QUESTION)
@@ -297,6 +300,8 @@ func start_game_won():
 	actors[0].get_node("BaseAnimations").play("Wave")
 	question_anim.play("Win")
 	candidates_wave()
+	yield(get_tree().create_timer(7.0),"timeout")
+	Sounds.play_voice("thatsit")
 
 func start_gameover():
 	user_data.set_cat_score(active_category, current_question)

@@ -614,7 +614,6 @@ custom_fonts/font = SubResource( 12 )
 align = 1
 valign = 2
 autowrap = true
-percent_visible = -1.0
 
 [node name="Tween" type="Tween" parent="GameLayer/HUD/SpeechPanel"]
 
