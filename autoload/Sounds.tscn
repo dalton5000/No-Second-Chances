@@ -169,11 +169,11 @@ bus = "Voice"
 [node name="godot" type="Node" parent="Voice"]
 
 [node name="q1" type="AudioStreamPlayer" parent="Voice/godot"]
-stream = ExtResource( 55 )
+stream = ExtResource( 54 )
 bus = "Voice"
 
 [node name="q2" type="AudioStreamPlayer" parent="Voice/godot"]
-stream = ExtResource( 54 )
+stream = ExtResource( 55 )
 bus = "Voice"
 
 [node name="q3" type="AudioStreamPlayer" parent="Voice/godot"]

@@ -5,7 +5,7 @@ signal speech_complete
 
 
 
-var current_question = 8 setget set_current_question
+var current_question = 0 setget set_current_question
 var given_answer = 0
 
 onready var counter_label = $GameLayer/HUD/CounterPanel/CounterLabel
@@ -264,7 +264,8 @@ func start_validation():
 			Sounds.play("ohmygod")
 			yield(get_tree().create_timer(2.4),"timeout")
 
-		current_question+=1
+		set_current_question(current_question+1)
+
 		if current_question == 4:
 			Sounds.play_voice("halfway")
 			yield(Sounds,"voice_completed")
@@ -275,6 +276,7 @@ func start_validation():
 			say("You have reached the final question of this category! Savour the moment of fame while it lasts.")
 			yield(Sounds,"voice_completed")
 		if current_question == 10:
+			$GameLayer/Stage/WinParts.emitting=true
 			Sounds.play("fanfare")
 			Sounds.play_voice("youdidit")
 			say("You did it! That was the last question of the category. You're much smarter than you look!",6.0)
@@ -283,8 +285,9 @@ func start_validation():
 			yield(Sounds,"voice_completed")
 			say("So, there is no prize for budgetary reasons, but you can tell your friends about your success!",6.0)
 #			yield(Sounds,"voice_completed")
-			Sounds.play_voice("no prize")
-			yield(Sounds,"voice_completed")
+			Sounds.play_voice("noprize")
+			yield(get_tree().create_timer(7.0),"timeout")
+#			yield(Sounds,"voice_completed")
 			start_game_won()
 		else:
 			change_state(STATES.QUESTION)
@@ -296,10 +299,11 @@ func start_validation():
 func start_game_won():
 	user_data.set_cat_score(active_category, 10)
 	WebHandler.upload_answers(active_category, answers_given[active_category])
-	gameover_label.text = "You have won category %s\n Congratulations, and thank you for playing :)" % [active_category.capitalize()]
+	gameover_label.text = "You have won category %s\nCongratulations, and thank you for playing :)" % [active_category.capitalize()]
 	actors[0].get_node("BaseAnimations").play("Wave")
 	question_anim.play("Win")
 	candidates_wave()
+	$GameLayer/HUD/Creditspanel/CreditsAnim.play("Roll")
 	yield(get_tree().create_timer(7.0),"timeout")
 	Sounds.play_voice("thatsit")
 
@@ -324,6 +328,9 @@ func start_gameover():
 	yield(get_tree().create_timer(2.0),"timeout")
 	say("Goodbye and until next time!")
 	candidates_wave()
+	$GameLayer/HUD/Creditspanel/CreditsAnim.play("Roll")
+	yield(get_tree().create_timer(7.0),"timeout")
+	Sounds.play_voice("thatsit")
 
 	answer_buttons[data.answers[active_category][current_question][4]].modulate = Color.white
 #	yield(get_tree().create_timer(5.0),"timeout")
@@ -334,8 +341,10 @@ func create_gameover_text():
 
 	var better_players = []
 	for i in [1,2,3,4]:
-		if actors[i].score > current_question:
-			better_players.append(actors[i].player_name)
+		if actors[i].alive:
+			var t = int(int(actors[i].answer_list[current_question]) == data.answers[active_category][current_question][4])
+			if actors[i].score + t > current_question:
+				better_players.append(actors[i].player_name)
 	var all_equal = true
 	for i in [1,2,3,4]:
 		if actors[i].score != current_question:

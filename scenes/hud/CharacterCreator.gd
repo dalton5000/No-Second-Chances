@@ -10,16 +10,16 @@ var body_val = 0
 
 var value_string = "%s/%s"
 
-onready var head_value_label = $VBoxContainer/HeadRow/ValueLabel
-onready var body_value_label = $VBoxContainer/BodyRow/ValueLabel
+onready var head_value_label = $P/VBoxContainer/HeadRow/ValueLabel
+onready var body_value_label = $P/VBoxContainer/BodyRow/ValueLabel
 
-onready var actor = $VBoxContainer/ActorPanel/Control/Actor
+onready var actor = $P/VBoxContainer/ActorPanel/Control/Actor
 
 func _ready():
-	$VBoxContainer/BodyRow/ButtonLeft.connect("pressed", self, "body_pressed", [-1])
-	$VBoxContainer/BodyRow/ButtonRight.connect("pressed", self, "body_pressed", [1])
-	$VBoxContainer/HeadRow/ButtonLeft.connect("pressed", self, "head_pressed", [-1])
-	$VBoxContainer/HeadRow/ButtonRight.connect("pressed", self, "head_pressed", [1])
+	$P/VBoxContainer/BodyRow/ButtonLeft.connect("pressed", self, "body_pressed", [-1])
+	$P/VBoxContainer/BodyRow/ButtonRight.connect("pressed", self, "body_pressed", [1])
+	$P/VBoxContainer/HeadRow/ButtonLeft.connect("pressed", self, "head_pressed", [-1])
+	$P/VBoxContainer/HeadRow/ButtonRight.connect("pressed", self, "head_pressed", [1])
 
 	body_value_label.text = value_string % [str(body_val), str(BODY_MAX)]
 	head_value_label.text = value_string % [str(head_val), str(HEAD_MAX)]
@@ -54,7 +54,7 @@ func clean(string):
 
 
 func _on_Button_pressed():
-	user_data.player_name = clean($VBoxContainer/NameRow/LineEdit.text)
+	user_data.player_name = clean($P/VBoxContainer/NameRow/LineEdit.text)
 	user_data.head = head_val
 	user_data.body = body_val
 	user_data.save_config()
