@@ -940,6 +940,7 @@ anims/FadeOut = SubResource( 7 )
 [node name="Tween" type="Tween" parent="TitleLayer/Title"]
 
 [node name="Reset" type="Button" parent="TitleLayer/Title"]
+visible = false
 margin_left = 8.88776
 margin_top = 462.641
 margin_right = 80.8878

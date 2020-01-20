@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://autoload/Sounds.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/switch4.ogg" type="AudioStream" id=2]
@@ -27,7 +27,6 @@
 [ext_resource path="res://assets/vo/new/b10.ogg" type="AudioStream" id=25]
 [ext_resource path="res://assets/vo/new/b4-2.ogg" type="AudioStream" id=26]
 [ext_resource path="res://assets/vo/new/b11-1.ogg" type="AudioStream" id=27]
-[ext_resource path="res://assets/vo/first_question.ogg" type="AudioStream" id=28]
 [ext_resource path="res://assets/sfx/correct.ogg" type="AudioStream" id=29]
 [ext_resource path="res://assets/sfx/false.ogg" type="AudioStream" id=30]
 [ext_resource path="res://assets/vo/new/b4-1.ogg" type="AudioStream" id=31]
@@ -69,7 +68,7 @@
 [ext_resource path="res://assets/vo/new/q2-10.ogg" type="AudioStream" id=67]
 [ext_resource path="res://assets/vo/new/q3-1.ogg" type="AudioStream" id=68]
 [ext_resource path="res://assets/vo/new/b16-2.ogg" type="AudioStream" id=69]
-[ext_resource path="res://assets/vo/interlude.ogg" type="AudioStream" id=70]
+[ext_resource path="res://assets/vo/new/b7-2.ogg" type="AudioStream" id=70]
 [ext_resource path="res://assets/vo/fanfare.wav" type="AudioStream" id=71]
 [ext_resource path="res://assets/vo/new/q2-9.ogg" type="AudioStream" id=72]
 [ext_resource path="res://assets/vo/new/b16-3.ogg" type="AudioStream" id=73]
@@ -316,7 +315,7 @@ stream = ExtResource( 43 )
 bus = "Voice"
 
 [node name="start_quiz" type="AudioStreamPlayer" parent="Voice"]
-stream = ExtResource( 28 )
+stream = ExtResource( 37 )
 bus = "Voice"
 
 [node name="see_answers" type="Node" parent="Voice"]

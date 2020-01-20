@@ -376,9 +376,9 @@ func create_gameover_text():
 func load_candidate_data():
 	for i in 4:
 		var cdata = WebHandler.lobbies[active_category]
+		actors[i+1].body_frame = int(cdata[i]["body"])
 		actors[i+1].head_frame = int(cdata[i]["head"])
 		print("head:" + str(int(cdata[i]["head"])))
-		actors[i+1].body_frame = int(cdata[i]["body"])
 		actors[i+1].player_name = cdata[i]["name"]
 		actors[i+1].answer_list = cdata[i]["answers"]
 		player_names.append(cdata[i]["name"])
