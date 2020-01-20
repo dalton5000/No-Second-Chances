@@ -569,9 +569,9 @@ __meta__ = {
 [node name="QuestionPanel" type="PanelContainer" parent="GameLayer/HUD"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = -800.0
+margin_left = 30.0
 margin_top = -218.0
-margin_right = -56.0
+margin_right = 774.0
 margin_bottom = -1.20868
 theme = ExtResource( 8 )
 __meta__ = {
@@ -715,21 +715,42 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -95.0
-margin_top = -67.0
-margin_right = -8.0
-margin_bottom = -8.0
+margin_left = -1015.0
+margin_top = -598.0
+margin_right = -783.0
+margin_bottom = -517.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CounterLabel" type="Label" parent="GameLayer/HUD/CounterPanel"]
+[node name="VBoxContainer" type="HBoxContainer" parent="GameLayer/HUD/CounterPanel"]
 margin_left = 12.0
 margin_top = 12.0
-margin_right = 75.0
-margin_bottom = 47.0
+margin_right = 220.0
+margin_bottom = 69.0
+
+[node name="CounterLabel" type="Label" parent="GameLayer/HUD/CounterPanel/VBoxContainer"]
+margin_top = 11.0
+margin_right = 51.0
+margin_bottom = 46.0
 text = "0/10"
 align = 1
+
+[node name="MusicButton" type="Button" parent="GameLayer/HUD/CounterPanel/VBoxContainer" groups=[
+"button",
+]]
+margin_left = 55.0
+margin_right = 126.0
+margin_bottom = 57.0
+text = "Music"
+
+[node name="MasterButton" type="Button" parent="GameLayer/HUD/CounterPanel/VBoxContainer" groups=[
+"button",
+]]
+margin_left = 130.0
+margin_right = 208.0
+margin_bottom = 57.0
+text = "Sound"
 
 [node name="Creditspanel" type="PanelContainer" parent="GameLayer/HUD"]
 anchor_left = 0.5
@@ -745,7 +766,7 @@ __meta__ = {
 }
 
 [node name="CreditsAnim" type="AnimationPlayer" parent="GameLayer/HUD/Creditspanel"]
-playback_speed = 0.6
+playback_speed = 0.3
 anims/Roll = SubResource( 17 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameLayer/HUD/Creditspanel"]
@@ -790,9 +811,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 114.0
-margin_top = -650.0
+margin_top = -612.781
 margin_right = 506.0
-margin_bottom = -339.0
+margin_bottom = -301.781
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -812,21 +833,20 @@ align = 1
 [node name="GameOverLabel" type="Label" parent="GameLayer/HUD/GameOverPanel/VBoxContainer"]
 margin_top = 39.0
 margin_right = 368.0
-margin_bottom = 226.0
+margin_bottom = 225.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-text = "You reached question %s out of 10.
-Hey, at least you did better than %s!
-lalalalala
-asllsadlsad"
+text = "You reached question %s out of 10 in category %s.\\nMaybe read a book before Season 2!
+"
 autowrap = true
+clip_text = true
 
 [node name="MenuButton" type="Button" parent="GameLayer/HUD/GameOverPanel/VBoxContainer" groups=[
 "button",
 ]]
-margin_top = 230.0
+margin_top = 229.0
 margin_right = 368.0
-margin_bottom = 287.0
+margin_bottom = 286.0
 text = "Back to menu"
 
 [node name="TitleLayer" type="CanvasLayer" parent="."]
@@ -920,7 +940,6 @@ anims/FadeOut = SubResource( 7 )
 [node name="Tween" type="Tween" parent="TitleLayer/Title"]
 
 [node name="Reset" type="Button" parent="TitleLayer/Title"]
-visible = false
 margin_left = 8.88776
 margin_top = 462.641
 margin_right = 80.8878
@@ -1029,6 +1048,8 @@ bus = "Music"
 [connection signal="pressed" from="CreatorLayer/CharacterCreator/P/VBoxContainer/Button" to="CreatorLayer/CharacterCreator" method="_on_Button_pressed"]
 [connection signal="timeout" from="GameLayer/HUD/SpeechPanel/SpeechTimer" to="." method="_on_SpeechTimer_timeout"]
 [connection signal="timeout" from="GameLayer/HUD/SpeechPanel/HideTimer" to="." method="_on_HideTimer_timeout"]
+[connection signal="pressed" from="GameLayer/HUD/CounterPanel/VBoxContainer/MusicButton" to="." method="_on_MusicButton_pressed"]
+[connection signal="pressed" from="GameLayer/HUD/CounterPanel/VBoxContainer/MasterButton" to="." method="_on_MasterButton_pressed"]
 [connection signal="pressed" from="GameLayer/HUD/GameOverPanel/VBoxContainer/MenuButton" to="." method="_on_MenuButton_pressed"]
 [connection signal="category_selected" from="TitleLayer/Title" to="." method="_on_Title_category_selected"]
 [connection signal="create_pressed" from="TitleLayer/Title" to="." method="_on_Title_create_pressed"]

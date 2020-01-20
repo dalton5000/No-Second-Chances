@@ -7,6 +7,7 @@ signal connection_failed
 var answer_url = "http://dalton5000.pythonanywhere.com/add_answers"
 var lobbies = {}
 var connection_ok = false
+var loaded = false
 
 func get_lobbies():
 	for category in ["gaming", "godot", "surprise"]:
@@ -22,8 +23,9 @@ func _on_LobbyRequest_request_completed(result, response_code, headers, body):
 	var json = JSON.parse(body.get_string_from_utf8())
 	lobbies = json.result["lobbies"]
 	emit_signal("lobbies_loaded")
-#	print("lobbies loaded")
-#	print (lobbies)
+	print("lobbies loaded")
+	print (lobbies)
+	loaded = true
 
 #func _physics_process(delta):
 #	if Input.is_action_just_pressed("ui_down"):

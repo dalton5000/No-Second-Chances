@@ -8,7 +8,7 @@ signal speech_complete
 var current_question = 0 setget set_current_question
 var given_answer = 0
 
-onready var counter_label = $GameLayer/HUD/CounterPanel/CounterLabel
+onready var counter_label = $GameLayer/HUD/CounterPanel/VBoxContainer/CounterLabel
 
 onready var answer_buttons = [
 	$GameLayer/HUD/QuestionPanel/VBoxContainer/HBoxContainer/Button,
@@ -337,38 +337,38 @@ func start_gameover():
 #	change_state(STATES.MENU)
 
 func create_gameover_text():
-	var text = ""
-
-	var better_players = []
-	for i in [1,2,3,4]:
-		if actors[i].alive:
-			var t = int(int(actors[i].answer_list[current_question]) == data.answers[active_category][current_question][4])
-			if actors[i].score + t > current_question:
-				better_players.append(actors[i].player_name)
-	var all_equal = true
-	for i in [1,2,3,4]:
-		if actors[i].score != current_question:
-			all_equal=false
-	var names_string = ""
-	match better_players.size():
-		0:
-			if all_equal:
-				text = gameover_text_equal % [str(current_question), active_category]
-			else:
-				names_string = "%s, %s, %s and even %s" % player_names
-				text = gameover_text_best % [str(current_question), active_category, names_string]
-		1:
-			names_string = "%s" % [better_players]
-			text = gameover_text_better % [str(current_question), active_category, names_string]
-		2:
-			names_string = "%s and %s" % [better_players]
-			text = gameover_text_better % [str(current_question), active_category, names_string]
-		3:
-			names_string = "%s, %s, and %s" % [better_players]
-			text = gameover_text_better % [str(current_question), active_category, names_string]
-		4:
-			text = gameover_text_worst % [str(current_question), active_category]
-
+#	var text = ""
+#
+#	var better_players = []
+#	for i in [1,2,3,4]:
+#		if actors[i].alive:
+#			var t = int(int(actors[i].answer_list[current_question]) == data.answers[active_category][current_question][4])
+#			if actors[i].score + t > current_question:
+#				better_players.append(actors[i].player_name)
+#	var all_equal = true
+#	for i in [1,2,3,4]:
+#		if actors[i].score != current_question:
+#			all_equal=false
+#	var names_string = ""
+#	match better_players.size():
+#		0:
+#			if all_equal:
+#				text = gameover_text_equal % [str(current_question), active_category]
+#			else:
+#				names_string = "%s, %s, %s and even %s" % player_names
+#				text = gameover_text_best % [str(current_question), active_category, names_string]
+#		1:
+#			names_string = "%s" % [better_players]
+#			text = gameover_text_better % [str(current_question), active_category, names_string]
+#		2:
+#			names_string = "%s and %s" % [better_players]
+#			text = gameover_text_better % [str(current_question), active_category, names_string]
+#		3:
+#			names_string = "%s, %s, and %s" % [better_players]
+#			text = gameover_text_better % [str(current_question), active_category, names_string]
+#		4:
+#			text = gameover_text_worst % [str(current_question), active_category]
+	var text = "You reached question %s out of 10 in category %s.\nMaybe read a book\nbefore Season 2!" % [current_question, active_category.capitalize()]
 	return text
 
 
@@ -377,6 +377,7 @@ func load_candidate_data():
 	for i in 4:
 		var cdata = WebHandler.lobbies[active_category]
 		actors[i+1].head_frame = int(cdata[i]["head"])
+		print("head:" + str(int(cdata[i]["head"])))
 		actors[i+1].body_frame = int(cdata[i]["body"])
 		actors[i+1].player_name = cdata[i]["name"]
 		actors[i+1].answer_list = cdata[i]["answers"]
@@ -487,6 +488,8 @@ func _ready():
 	$GameLayer/HUD.hide()
 	$CreatorLayer/CharacterCreator.hide()
 	$TitleLayer/Title.show()
+	if WebHandler.loaded:
+		$TitleLayer/Title/ConnectionPanel.hide()
 
 	WebHandler.connect("connection_established",self,"on_connection_ok")
 	WebHandler.connect("lobbies_loaded",self,"on_lobbies_loaded")
@@ -559,3 +562,11 @@ func on_connection_failed():
 
 func _on_ConnectButton_pressed():
 	WebHandler.test_connection()
+
+
+func _on_MusicButton_pressed():
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), !AudioServer.is_bus_mute(AudioServer.get_bus_index("Music")))
+
+
+func _on_MasterButton_pressed():
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), !AudioServer.is_bus_mute(AudioServer.get_bus_index("Master")))
